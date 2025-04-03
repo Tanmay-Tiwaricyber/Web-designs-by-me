@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Premium | Upgrade Your Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-light: #1a1a1a;
+            --bg-lighter: #282828;
+            --accent: #8a63d2;
+            --accent-light: #b18ff0;
+            --gold: #d4af37;
+            --gold-light: #f4d03f;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(to right, #121212, #1a1a1a);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Hero Section */
+        .hero-premium {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://source.unsplash.com/random/1920x1080/?concert,stage') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(138, 99, 210, 0.2) 0%, rgba(177, 143, 240, 0.1) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-premium h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-premium p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-badge i {
+            color: var(--gold);
+        }
+
+        .cta-button {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(138, 99, 210, 0.3);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(138, 99, 210, 0.4);
+        }
+
+        .cta-button:hover::after {
+            left: 100%;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 6rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-light));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(138, 99, 210, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: var(--bg-light);
+            padding: 6rem 3rem;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: var(--bg-dark);
+            padding: 3rem 2.5rem;
+            border-radius: 15px;
+            width: 320px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pricing-card.popular {
+            border: 1px solid var(--gold);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--gold);
+            color: #000;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.3rem 2rem;
+            transform: rotate(45deg);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-tier {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.8rem;
+        }
+
+        .pricing-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .pricing-button {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .pricing-button.primary {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            color: white;
+        }
+
+        .pricing-button.secondary {
+            background: transparent;
+            border: 1px solid var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        .pricing-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 99, 210, 0.3);
+        }
+
+        .pricing-button.secondary:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 6rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison-table th {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .feature-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .comparison-table .check {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .comparison-table .x {
+            color: #ff4d4d;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://source.unsplash.com/random/1920x1080/?headphones,studio') no-repeat center center/cover;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .testimonial-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 2px solid var(--gold);
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            text-align: left;
+        }
+
+        .author-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--gold);
+        }
+
+        .faq-question::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: var(--transition);
+        }
+
+        .faq-question.active::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: var(--text-secondary);
+        }
+
+        .faq-answer.show {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .final-cta p {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            padding: 4rem 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-premium h1 {
+                font-size: 3.5rem;
+            }
+            
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pricing-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-premium h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-premium p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-premium {
+                height: auto;
+                padding: 6rem 1rem;
+            }
+            
+            .hero-premium h1 {
+                font-size: 2.2rem;
+            }
+            
+            .feature-card, .pricing-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .testimonial-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .final-cta h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Harmony</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <!-- <a href="#">Browse</a> -->
+            <a href="library.html">Library</a>
+            <a href="about.html">About</a>
+            <a href="#" class="active">Premium</a>
+        </div>
+        <div class="user-menu">
+            <div class="user-avatar">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User Avatar">
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-premium">
+        <div class="hero-content">
+            <h1>Elevate Your Music Experience</h1>
+            <p>Unlock crystal-clear sound, exclusive content, and unlimited listening with Harmony Premium</p>
+            <div class="hero-badges">
+                <div class="hero-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>Ad-Free Listening</span>
+                </div>
+                <div class="hero-badge">
+                    <i class="fas fa-headphones"></i>
+                    <span>Hi-Fi Audio</span>
+                </div>
+                <div class="hero-badge">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Offline Mode</span>
+                </div>
+            </div>
+            <button class="cta-button">Start Your Free Trial</button>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Premium Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headphones-alt"></i>
+                </div>
+                <h3 class="feature-title">Lossless Audio Quality</h3>
+                <p class="feature-desc">
+                    Experience studio-quality sound with our FLAC streaming at 1411 kbps. Hear every note exactly as the artist intended.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-ad"></i>
+                </div>
+                <h3 class="feature-title">Ad-Free Listening</h3>
+                <p class="feature-desc">
+                    Enjoy uninterrupted music without any commercial breaks. Your playlist, your rules.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="feature-title">Offline Downloads</h3>
+                <p class="feature-desc">
+                    Download your favorite albums and playlists to listen anywhere, even without an internet connection.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-compact-disc"></i>
+                </div>
+                <h3 class="feature-title">Exclusive Content</h3>
+                <p class="feature-desc">
+                    Access artist interviews, live sessions, and behind-the-scenes footage only available to Premium members.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3 class="feature-title">Advanced Controls</h3>
+                <p class="feature-desc">
+                    Customize your listening experience with EQ settings, crossfade, and other professional audio tools.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="feature-title">Priority Support</h3>
+                <p class="feature-desc">
+                    Get 24/7 access to our dedicated support team with faster response times and personalized assistance.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <h2 class="section-title">Choose Your Plan</h2>
+        <p style="max-width: 700px; margin: 0 auto 3rem; color: var(--text-secondary);">
+            Select the perfect plan for your listening habits. All plans include a 30-day free trial with full Premium features.
+        </p>
+        
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <div class="pricing-tier">Individual</div>
+                <div class="pricing-amount">$9.99</div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li>Ad-free music listening</li>
+                    <li>Download to listen offline</li>
+                    <li>High-quality audio streaming</li>
+                    <li>1 Premium account</li>
+                </ul>
+                <button class="pricing-button primary">Start Free Trial</button>
+            </div>
+            
+            <div class="pricing-card popular">
+                <div class="pricing-tier">Duo</div>
+                <div class="pricing-amount">$12.99</div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li>2 Premium accounts</li>
+                    <li>Ad-free music listening</li>
+                    <li>Download to listen offline</li>
+                    <li>High-quality audio streaming</li>
+                    <li>Duo Mix: a playlist for two</li>
+                </ul>
+                <button class="pricing-button primary">Start Free Trial</button>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-tier">Family</div>
+                <div class="pricing-amount">$15.99</div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li>Up to 6 Premium accounts</li>
+                    <li>Block explicit music</li>
+                    <li>Ad-free music listening</li>
+                    <li>Download to listen offline</li>
+                    <li>High-quality audio streaming</li>
+                    <li>Family Mix: a playlist for your family</li>
+                </ul>
+                <button class="pricing-button primary">Start Free Trial</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <h2 class="section-title">Premium vs Free</h2>
+        <p style="max-width: 700px; margin: 0 auto 3rem; color: var(--text-secondary); text-align: center;">
+            See how Harmony Premium compares to our free service
+        </p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Free</th>
+                    <th>Premium</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="feature-name">Audio Quality</td>
+                    <td>160 kbps</td>
+                    <td class="check">Up to 1411 kbps (FLAC)</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Ads</td>
+                    <td class="x">Yes</td>
+                    <td class="check">No</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Offline Listening</td>
+                    <td class="x">No</td>
+                    <td class="check">Yes</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Skip Tracks</td>
+                    <td>Limited</td>
+                    <td class="check">Unlimited</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Exclusive Content</td>
+                    <td class="x">No</td>
+                    <td class="check">Yes</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Device Switching</td>
+                    <td class="x">No</td>
+                    <td class="check">Yes</td>
+                </tr>
+                <tr>
+                    <td class="feature-name">Support</td>
+                    <td>Standard</td>
+                    <td class="check">Priority</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <h2 class="section-title">What Our Members Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    The sound quality on Harmony Premium is simply unmatched. I can hear details in my favorite songs that I never noticed before. Worth every penny for true music lovers.
+                </p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Michael Rodriguez</h4>
+                        <p>Premium Member since 2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What's included in the free trial?</div>
+            <div class="faq-answer">
+                <p>Your 30-day free trial gives you full access to all Premium features, including ad-free listening, offline downloads, and high-quality audio. No credit card is required to start your trial.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Can I cancel anytime?</div>
+            <div class="faq-answer">
+                <p>Yes, you can cancel your Premium subscription at any time. If you cancel during your free trial, you won't be charged. After the trial, you'll retain access until the end of your billing period.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How does the Family plan work?</div>
+            <div class="faq-answer">
+                <p>The Family plan allows up to 6 people living at the same address to each have their own Premium account under one subscription. Each member gets full Premium features with their own personal login.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What audio quality does Premium offer?</div>
+            <div class="faq-answer">
+                <p>Harmony Premium offers lossless FLAC streaming at 1411 kbps, which is CD-quality audio. We also offer high-quality 320 kbps AAC streaming for devices that don't support FLAC.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How many devices can I use with Premium?</div>
+            <div class="faq-answer">
+                <p>You can use Harmony Premium on up to 5 devices simultaneously. There's no limit to how many devices you can register, but only 5 can be active at the same time.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Ready to Experience Premium?</h2>
+        <p>Join millions of music lovers enjoying the highest quality streaming experience available.</p>
+        <button class="cta-button">Start Your Free Trial</button>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Harmony</div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Jobs</a>
+            <a href="#">For Artists</a>
+            <a href="#">Press</a>
+            <a href="#">Legal</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p class="copyright">© 2023 Harmony Music. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // FAQ functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other FAQs
+                faqQuestions.forEach(q => {
+                    if (q !== question) {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('show');
+                    }
+                });
+                
+                // Toggle current FAQ
+                question.classList.toggle('active');
+                answer.classList.toggle('show');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

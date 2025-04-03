@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal's Message & School Notices</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --gold-accent: #d4af37;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-radius: 8px;
+            --notice-bg: #2a2a2a;
+            --notice-accent: #3a82f6;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .content-container {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Principal's Message Card */
+        .principal-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            width: 65%;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Notices Section */
+        .notices-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            width: 35%;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(58, 130, 246, 0.3);
+        }
+
+        .notices-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(58, 130, 246, 0.3);
+        }
+
+        .notices-header h2 {
+            color: var(--notice-accent);
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .notice-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .notice-date {
+            color: var(--gold-accent);
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notice-date i {
+            font-size: 12px;
+        }
+
+        .notice-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--notice-accent);
+        }
+
+        .notice-content {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .urgent {
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .urgent::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 5px;
+            height: 80%;
+            width: 4px;
+            background-color: #ff4757;
+            border-radius: 2px;
+        }
+
+        /* Shared Card Styles */
+        .letterhead {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .letterhead h1 {
+            color: var(--gold-accent);
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .letterhead p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .letter-date {
+            text-align: right;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .salutation {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .message-content {
+            font-size: 16px;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .message-content p {
+            margin-bottom: 15px;
+            text-indent: 30px;
+        }
+
+        .closing {
+            margin-top: 40px;
+        }
+
+        .signature-block {
+            text-align: right;
+            margin-top: 50px;
+        }
+
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 24px;
+            color: var(--gold-accent);
+            margin-top: 10px;
+        }
+
+        .principal-info {
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+
+        .principal-name {
+            font-weight: bold;
+            color: var(--gold-accent);
+            font-size: 18px;
+        }
+
+        .principal-title {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .principal-photo {
+            width: 100px;
+            height: 125px;
+            object-fit: cover;
+            border: 1px solid var(--gold-accent);
+            float: right;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            shape-outside: margin-box;
+        }
+
+        .school-logo {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 992px) {
+            .content-container {
+                flex-direction: column;
+            }
+            
+            .principal-card,
+            .notices-card {
+                width: 100%;
+            }
+            
+            .notices-card {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .principal-card,
+            .notices-card {
+                padding: 25px;
+            }
+            
+            .letterhead h1 {
+                font-size: 20px;
+            }
+            
+            .notices-header h2 {
+                font-size: 20px;
+            }
+            
+            .principal-photo {
+                width: 80px;
+                height: 100px;
+                float: none;
+                display: block;
+                margin: 0 auto 20px auto;
+            }
+            
+            .message-content p {
+                text-indent: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .principal-card,
+            .notices-card {
+                padding: 20px;
+            }
+            
+            .letterhead h1 {
+                font-size: 18px;
+            }
+            
+            .notices-header h2 {
+                font-size: 18px;
+            }
+            
+            .message-content {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <!-- Principal's Message Card (Left Side) -->
+        <div class="principal-card">
+            <div class="letterhead">
+                <img src="https://via.placeholder.com/200x60/1e1e1e/d4af37?text=SCHOOL+LOGO" alt="School Logo" class="school-logo">
+                <h1>MESSAGE FROM THE PRINCIPAL</h1>
+                <p>JAINARAYAN VIDHYA MANDIR, KANPUR</p>
+            </div>
+            
+            <div class="letter-date">
+                June 10, 2024
+            </div>
+            
+            <div class="salutation">
+                Dear Parents and Guardians,
+            </div>
+            
+            <div class="message-content">
+                <img src="https://via.placeholder.com/100x125/1e1e1e/d4af37?text=Principal" alt="Principal's Photo" class="principal-photo">
+                
+                <p>It gives me immense pleasure to welcome you all to the new academic session 2024-25. As we embark on this new journey together, I reflect on our institution's proud legacy of academic excellence and holistic development.</p>
+                
+                <p>Our consistent outstanding results in board examinations, along with remarkable achievements in sports, cultural events, and prestigious competitive exams like IIT-JEE, stand testament to our commitment to quality education. These accomplishments have firmly established us among the premier educational institutions in the city.</p>
+                
+                <p>At our school, we blend modern educational practices with timeless Indian values. Our curriculum is carefully designed to not only impart knowledge but also instill strong moral character and ethical values - qualities that are indispensable in today's rapidly evolving world.</p>
+                
+                <p>I urge you to actively participate in your ward's educational journey and encourage them to make the most of the opportunities our institution provides. Together, we can shape them into well-rounded individuals who will make meaningful contributions to society.</p>
+                
+                <p>I look forward to your continued support and cooperation in making this academic year productive and memorable for all our students.</p>
+            </div>
+            
+            <div class="closing">
+                <p>With warm regards,</p>
+            </div>
+            
+            <div class="signature-block">
+                <div class="signature">Dr. Sant Ram Dwivedi</div>
+                <div class="principal-info">
+                    <div class="principal-name">DR. SANT RAM DWIVEDI</div>
+                    <div class="principal-title">Principal</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Notices Card (Right Side) -->
+        <div class="notices-card">
+            <div class="notices-header">
+                <h2><i class="fas fa-bullhorn"></i> IMPORTANT NOTICES</h2>
+            </div>
+            
+            <div class="notice-item urgent">
+                <div class="notice-date">
+                    <i class="far fa-calendar-alt"></i> March 15, 2025
+                </div>
+                <div class="notice-title">New Admission Forms Available</div>
+                <div class="notice-content">
+                    Admission forms for the academic year 2025-26 will be available from March 23, 2025. Please visit the school office between 9:00 AM to 2:00 PM on working days.
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-date">
+                    <i class="far fa-calendar-alt"></i> March 10, 2025
+                </div>
+                <div class="notice-title">Annual Sports Day</div>
+                <div class="notice-content">
+                    The school will be conducting its Annual Sports Day on March 28, 2025. All parents are cordially invited to attend the event starting at 9:00 AM in the school grounds.
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-date">
+                    <i class="far fa-calendar-alt"></i> March 5, 2025
+                </div>
+                <div class="notice-title">Summer Vacation Schedule</div>
+                <div class="notice-content">
+                    Summer vacations will commence from May 15, 2025 to June 30, 2025. School will reopen on July 1, 2025 with fresh academic session.
+                </div>
+            </div>
+            
+            <div class="notice-item">
+                <div class="notice-date">
+                    <i class="far fa-calendar-alt"></i> February 28, 2025
+                </div>
+                <div class="notice-title">Parent-Teacher Meeting</div>
+                <div class="notice-content">
+                    The next Parent-Teacher Meeting is scheduled for April 5, 2025 from 10:00 AM to 1:00 PM. Please make sure to attend to discuss your ward's progress.
+                </div>
+            </div>
+            
+            <div class="notice-item urgent">
+                <div class="notice-date">
+                    <i class="far fa-calendar-alt"></i> February 25, 2025
+                </div>
+                <div class="notice-title">Fee Payment Deadline</div>
+                <div class="notice-content">
+                    Last date for payment of quarterly fees without late fine is March 10, 2025. After this date, a late fee of ₹50 per day will be applicable.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

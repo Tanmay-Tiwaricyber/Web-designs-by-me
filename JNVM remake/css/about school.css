@@ -1,0 +1,230 @@
+
+:root {
+    --bg-dark: #f8fafc;
+    --surface: #ffffff;
+    --surface-light: #f1f5f9;
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --accent: #d97706;
+    --accent-dark: #b45309;
+    --text-primary: #1e293b;       /* Dark slate for primary text */
+    --text-secondary: #64748b;     /* Slate for secondary text */
+    --text-nav: #334155;           /* Premium slate for navbar text */
+    --text-nav-hover: #1e40af;     /* Deep blue for navbar hover */
+    --glass: rgba(255, 255, 255, 0.97);
+    --transition: all 0.3s ease;
+}
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--dark-bg);
+            line-height: 1.6;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            color: var(--gold-accent);
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold-accent);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            position: relative;
+            padding: 30px;
+        }
+
+        .about-text::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 50%);
+            border-radius: var(--border-radius);
+            z-index: 0;
+        }
+
+        .about-text-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: var(--gold-accent);
+            font-weight: bold;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            height: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+            z-index: 1;
+        }
+
+        .milestones {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .milestone-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .milestone-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1);
+        }
+
+        .milestone-icon {
+            font-size: 40px;
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+        }
+
+        .milestone-year {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .milestone-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .milestone-desc {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .recognition-badge {
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px dashed var(--gold-accent);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .recognition-badge h3 {
+            color: var(--gold-accent);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .recognition-badge p {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .milestones {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-image {
+                height: 400px;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .milestones {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-text {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .about-container {
+                padding: 40px 15px;
+            }
+        }

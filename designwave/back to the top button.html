@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Back to Top Button</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --light: #F9FAFB;
+            --dark: #111827;
+            --darker: #0F172A;
+            --glass: rgba(15, 23, 42, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 6rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* ======================= */
+        /* LUXURY BACK TO TOP BUTTON */
+        /* ======================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 70px;
+            height: 70px;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: var(--light);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(79, 70, 229, 0.3) 0%, 
+                rgba(16, 185, 129, 0.3) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(79, 70, 229, 0.4);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .back-to-top:hover::before {
+            opacity: 1;
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .back-to-top i {
+            transition: var(--transition);
+        }
+
+        .back-to-top:hover i {
+            animation: float 1.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .progress-container.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-circle {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 4;
+        }
+
+        .progress-circle-fill {
+            fill: none;
+            stroke: url(#progress-gradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 251;
+            stroke-dashoffset: 251;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* Gradient for progress circle */
+        svg.defs-only {
+            position: absolute;
+            height: 0;
+            width: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+            overflow: hidden;
+        }
+
+        /* Floating Particles Effect */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .back-to-top:hover .particle {
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Content -->
+    <section id="section1">
+        <div class="container">
+            <h1>Ultra-Premium Back to Top</h1>
+            <p>Experience the pinnacle of web design with this luxurious back-to-top button featuring glass morphism, animated particles, and a progress indicator.</p>
+            <p>Scroll down to witness the elegant appearance animation.</p>
+        </div>
+    </section>
+
+    <section id="section2" style="background: rgba(15, 23, 42, 0.5);">
+        <div class="container">
+            <h1>Exquisite Craftsmanship</h1>
+            <p>Every detail meticulously designed - from the gradient progress ring to the floating particle effects on hover.</p>
+        </div>
+    </section>
+
+    <section id="section3" style="background: rgba(15, 23, 42, 0.7);">
+        <div class="container">
+            <h1>Unparalleled Elegance</h1>
+            <p>The button features smooth animations, perfect proportions, and a sophisticated color scheme that complements any premium website.</p>
+        </div>
+    </section>
+
+    <!-- SVG Definitions -->
+    <svg class="defs-only">
+        <defs>
+            <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4F46E5" />
+                <stop offset="100%" stop-color="#10B981" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progressContainer">
+        <svg class="progress-circle" viewBox="0 0 100 100">
+            <circle class="progress-circle-bg" cx="50" cy="50" r="40"/>
+            <circle class="progress-circle-fill" cx="50" cy="50" r="40"/>
+        </svg>
+    </div>
+
+    <!-- Luxury Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <div class="particles" id="particles"></div>
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.querySelector('.progress-circle-fill');
+        const particlesContainer = document.getElementById('particles');
+        
+        // Create particles
+        function createParticles() {
+            const particleCount = 12;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 4 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 2;
+                const duration = Math.random() * 3 + 2;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Add animation
+                particle.style.animation = `particleFloat ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Update progress indicator
+        function updateProgress() {
+            const scrollHeight = document.documentElement.scrollHeight;
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / (scrollHeight - height)) * 100;
+            const offset = 251 - (251 * scrollPercent) / 100;
+            
+            progressFill.style.strokeDashoffset = offset;
+        }
+        
+        // Toggle visibility
+        function toggleBackToTop() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+                progressContainer.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+                progressContainer.classList.remove('active');
+            }
+            updateProgress();
+        }
+        
+        // Smooth scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Add temporary pulse effect
+            backToTop.style.animation = 'pulse 0.5s ease';
+            setTimeout(() => {
+                backToTop.style.animation = '';
+            }, 500);
+        }
+        
+        // Initialize
+        createParticles();
+        toggleBackToTop();
+        
+        // Event listeners
+        window.addEventListener('scroll', toggleBackToTop);
+        backToTop.addEventListener('click', scrollToTop);
+        
+        // Keyframes for particle animation
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(`
+            @keyframes particleFloat {
+                0% { transform: translate(0, 0); opacity: 0; }
+                50% { opacity: 0.3; }
+                100% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px); opacity: 0; }
+            }
+        `, styleSheet.cssRules.length);
+        
+        styleSheet.insertRule(`
+            @keyframes pulse {
+                0% { transform: scale(1); box-shadow: 0 20px 50px rgba(79, 70, 229, 0.3); }
+                50% { transform: scale(0.95); box-shadow: 0 20px 50px rgba(79, 70, 229, 0.6); }
+                100% { transform: scale(1); box-shadow: 0 20px 50px rgba(79, 70, 229, 0.3); }
+            }
+        `, styleSheet.cssRules.length);
+    </script>
+</body>
+</html>

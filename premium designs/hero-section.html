@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio - Hero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Color Scheme */
+            --dark-primary: #0f172a;
+            --dark-secondary: #1e293b;
+            --light-primary: #ffffff;
+            --light-secondary: #f8fafc;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            
+            /* Animation */
+            --transition-speed: 0.3s;
+            --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--light-secondary);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 0 2rem;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge i {
+            font-size: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--text-dark), var(--accent-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-title span {
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 90%;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 0.75rem 1.75rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) var(--transition-easing);
+            border: 1px solid transparent;
+            font-family: 'Space Grotesk', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--text-dark);
+            color: var(--text-dark);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-card {
+            position: absolute;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .hero-card.dark {
+            background: rgba(15, 23, 42, 0.7);
+        }
+
+        .hero-card.light {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .card-1 {
+            width: 300px;
+            height: 400px;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            transform: rotate(-5deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-2 {
+            width: 320px;
+            height: 420px;
+            top: 50px;
+            right: 0;
+            z-index: 2;
+            transform: rotate(5deg);
+            animation: float 7s ease-in-out infinite 1s;
+        }
+
+        .card-3 {
+            width: 280px;
+            height: 380px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            z-index: 1;
+            animation: float 5s ease-in-out infinite 0.5s;
+        }
+
+        .card-content {
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-primary);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            color: var(--accent-primary);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-title.dark {
+            color: var(--text-light);
+        }
+
+        .card-title.light {
+            color: var(--text-dark);
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .card-description.dark {
+            color: var(--text-muted);
+        }
+
+        .card-description.light {
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .card-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-pill {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tech-pill.dark {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+        }
+
+        .tech-pill.light {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-dark);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all var(--transition-speed) var(--transition-easing);
+        }
+
+        .card-link.dark {
+            color: var(--accent-primary);
+        }
+
+        .card-link.light {
+            color: var(--accent-secondary);
+        }
+
+        .card-link:hover {
+            gap: 0.75rem;
+        }
+
+        .card-link i {
+            transition: transform var(--transition-speed) var(--transition-easing);
+        }
+
+        .card-link:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Background Elements */
+        .hero-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(80px);
+            opacity: 0.15;
+        }
+
+        .bg-element-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent-primary);
+            top: -200px;
+            left: -200px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .bg-element-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-secondary);
+            bottom: -200px;
+            right: -200px;
+            animation: pulse 10s ease-in-out infinite 2s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(-5deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.15; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding-top: 6rem;
+                padding-bottom: 4rem;
+            }
+
+            .hero-visual {
+                height: 500px;
+                order: -1;
+            }
+
+            .hero-content {
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .card-1, .card-2, .card-3 {
+                width: 250px;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="hero-bg-element bg-element-1"></div>
+        <div class="hero-bg-element bg-element-2"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-rocket"></i>
+                    <span>Senior Full Stack Developer</span>
+                </div>
+                <h1 class="hero-title">Hi, I'm <span>Alex Carter</span></h1>
+                <p class="hero-subtitle">I build exceptional digital experiences with modern web technologies. Specializing in React, Node.js, and cloud architecture, I help startups and enterprises bring their ideas to life.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary">
+                        View My Work
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-file-alt"></i>
+                        Download CV
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <!-- Floating Card 1 (Dark) -->
+                <div class="hero-card dark card-1">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Project" class="card-avatar">
+                            <div class="card-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title dark">E-Commerce Dashboard</h3>
+                        <p class="card-description dark">A comprehensive admin dashboard built with React and Node.js for managing e-commerce operations with real-time analytics.</p>
+                        <div class="card-tech">
+                            <span class="tech-pill dark">React</span>
+                            <span class="tech-pill dark">Node.js</span>
+                            <span class="tech-pill dark">MongoDB</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link dark">
+                                View Project
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Card 2 (Light) -->
+                <div class="hero-card light card-2">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Project" class="card-avatar">
+                            <div class="card-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title light">API Gateway</h3>
+                        <p class="card-description light">Microservices architecture with JWT authentication and rate limiting built with Express.js and Redis.</p>
+                        <div class="card-tech">
+                            <span class="tech-pill light">Node.js</span>
+                            <span class="tech-pill light">Redis</span>
+                            <span class="tech-pill light">Docker</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link light">
+                                View Case Study
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Card 3 (Dark) -->
+                <div class="hero-card dark card-3">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Project" class="card-avatar">
+                            <div class="card-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title dark">Mobile Banking App</h3>
+                        <p class="card-description dark">Cross-platform mobile application for banking services with biometric authentication and transaction management.</p>
+                        <div class="card-tech">
+                            <span class="tech-pill dark">React Native</span>
+                            <span class="tech-pill dark">Firebase</span>
+                            <span class="tech-pill dark">GraphQL</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link dark">
+                                View on App Store
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate hero content on load
+            const heroContent = document.querySelector('.hero-content');
+            heroContent.style.opacity = '0';
+            heroContent.style.transform = 'translateY(20px)';
+            heroContent.style.animation = 'fadeInUp 0.8s ease-out forwards';
+            
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.hero-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px) rotate(0deg)';
+                    card.style.boxShadow = '0 30px 60px -10px rgba(0, 0, 0, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    // Reset to original transform based on card class
+                    if (card.classList.contains('card-1')) {
+                        card.style.transform = 'rotate(-5deg)';
+                    } else if (card.classList.contains('card-2')) {
+                        card.style.transform = 'rotate(5deg)';
+                    } else {
+                        card.style.transform = 'translateX(-50%) rotate(2deg)';
+                    }
+                    card.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            
+            // Background elements animation
+            const bgElements = document.querySelectorAll('.hero-bg-element');
+            bgElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 2}s`;
+            });
+        });
+    </script>
+</body>
+</html>

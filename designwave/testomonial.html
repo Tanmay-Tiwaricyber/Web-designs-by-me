@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designwave | Client Success Stories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --dark: #111827;
+            --darker: #0F172A;
+            --light: #F9FAFB;
+            --gray: #E5E7EB;
+            --dark-gray: #374151;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.2);
+            --glass: rgba(15, 23, 42, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ======================= */
+        /* PREMIUM TESTIMONIALS */
+        /* ======================= */
+        .testimonials {
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 150%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .testimonials-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .testimonial-text::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .testimonial-meta {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .testimonial-author {
+            flex: 1;
+        }
+
+        .testimonial-author h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            color: var(--light);
+        }
+
+        .testimonial-author p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-rating {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-stats {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Client Logos */
+        .client-logos {
+            margin-top: 5rem;
+            padding: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .client-logos-title {
+            text-align: center;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .client-logos-title::before,
+        .client-logos-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .client-logos-title::before {
+            left: 0;
+        }
+
+        .client-logos-title::after {
+            right: 0;
+        }
+
+        .client-logos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .client-logo {
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.7;
+            transition: var(--transition);
+            height: 40px;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section {
+                padding: 6rem 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .testimonial-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .client-logos-title::before,
+            .client-logos-title::after {
+                width: 25%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-description {
+                font-size: 1.1rem;
+            }
+            
+            .client-logos-title::before,
+            .client-logos-title::after {
+                width: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Client Success Stories Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">
+                    <i class="fas fa-trophy me-2"></i>Client Success Stories
+                </span>
+                <h2 class="section-title">Transforming Brands, Delivering Results</h2>
+                <p class="section-description">
+                    Discover how we've helped industry leaders achieve their goals through strategic design solutions.
+                </p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-cards">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                Designwave completely transformed our digital presence. Their strategic approach resulted in a 150% increase in online engagement and a 75% improvement in conversion rates. The team's creativity and attention to detail were exceptional.
+                            </p>
+                            <div class="testimonial-meta">
+                                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson" class="testimonial-avatar">
+                                <div class="testimonial-author">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>CMO, TechNova Solutions</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">150%</div>
+                                <div class="stat-label">Engagement</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">75%</div>
+                                <div class="stat-label">Conversions</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">12 weeks</div>
+                                <div class="stat-label">Timeline</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                Our rebrand with Designwave was a game-changer. They captured our vision perfectly and delivered a brand identity that elevated our market position. The website they designed increased our lead generation by 200%.
+                            </p>
+                            <div class="testimonial-meta">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="testimonial-avatar">
+                                <div class="testimonial-author">
+                                    <h4>Michael Chen</h4>
+                                    <p>CEO, GreenHarvest</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">200%</div>
+                                <div class="stat-label">Leads</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9/5</div>
+                                <div class="stat-label">Satisfaction</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8 weeks</div>
+                                <div class="stat-label">Timeline</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                The mobile app Designwave created for us achieved a 90% user retention rate. Their UX design approach was data-driven and innovative, resulting in an app that our customers love to use daily.
+                            </p>
+                            <div class="testimonial-meta">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="testimonial-avatar">
+                                <div class="testimonial-author">
+                                    <h4>Emma Rodriguez</h4>
+                                    <p>Product Director, FitLife</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">90%</div>
+                                <div class="stat-label">Retention</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.8/5</div>
+                                <div class="stat-label">App Store</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">10 weeks</div>
+                                <div class="stat-label">Timeline</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client Logos -->
+                <div class="client-logos">
+                    <h3 class="client-logos-title">Trusted By Industry Leaders</h3>
+                    <div class="client-logos-grid">
+                        <img src="https://logo.clearbit.com/google.com?size=120" alt="Google" class="client-logo">
+                        <img src="https://logo.clearbit.com/spotify.com?size=120" alt="Spotify" class="client-logo">
+                        <img src="https://logo.clearbit.com/airbnb.com?size=120" alt="Airbnb" class="client-logo">
+                        <img src="https://logo.clearbit.com/slack.com?size=120" alt="Slack" class="client-logo">
+                        <img src="https://logo.clearbit.com/netflix.com?size=120" alt="Netflix" class="client-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple animation for testimonial cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            testimonialCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

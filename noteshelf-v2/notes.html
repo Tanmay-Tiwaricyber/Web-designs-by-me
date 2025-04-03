@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteShelf | Premium Academic Resources</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://i.ibb.co/7YkXZzY/note.png" type="image/x-icon">
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --secondary: #f59e0b;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --dark-gray: #334155;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            --glass: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(at 80% 0%, hsla(249, 89%, 25%, 0.2) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(253, 89%, 25%, 0.2) 0px, transparent 50%);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Marcellus', serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: var(--light);
+        }
+        
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+        
+        .logo-text {
+            font-family: 'Marcellus', serif;
+            font-size: 1.8rem;
+            color: var(--light);
+            position: relative;
+        }
+        
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s ease;
+        }
+        
+        .logo:hover .logo-text::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .main-nav a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover {
+            color: var(--light);
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            margin-left: 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 8rem 0 4rem;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .page-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--light), #d1d5db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Subject Navigation */
+        .subject-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .subject-tab {
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--gray);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .subject-tab img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0.8);
+            transition: var(--transition);
+        }
+        
+        .subject-tab.active, .subject-tab:hover {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--light);
+            border-color: var(--primary);
+        }
+        
+        .subject-tab.active img, .subject-tab:hover img {
+            filter: brightness(1);
+        }
+        
+        /* Class Navigation */
+        .class-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        
+        .class-tab {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--gray);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .class-tab.active, .class-tab:hover {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--light);
+            border-color: var(--primary);
+        }
+        
+        /* Notes Grid */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .note-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .note-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        .note-card h3 {
+            color: var(--light);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .note-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .note-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .note-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .note-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .note-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .note-btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .note-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+        
+        .note-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .note-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Chapter Accordion */
+        .chapter-accordion {
+            margin-top: 3rem;
+        }
+        
+        .chapter-item {
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-header {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .chapter-header:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .chapter-header h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--light);
+        }
+        
+        .chapter-header i {
+            transition: transform 0.3s ease;
+        }
+        
+        .chapter-header.active i {
+            transform: rotate(180deg);
+        }
+        
+        .chapter-content {
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 0 0 8px 8px;
+            border: 1px solid var(--glass-border);
+            border-top: none;
+            display: none;
+        }
+        
+        .chapter-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 3rem;
+            position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+            padding-left: 3rem;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to bottom, var(--dark), var(--darker));
+            padding: 6rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .footer-col p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--light);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--light);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .notes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1.5rem;
+            }
+            
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--glass);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+                border-left: 1px solid var(--glass-border);
+            }
+            
+            .main-nav.active {
+                right: 0;
+            }
+            
+            .nav-cta {
+                margin: 1rem 0 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subject-nav, .class-nav {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--accent));
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="https://i.ibb.co/7YkXZzY/note.png" alt="NoteShelf Logo">
+                <span class="logo-text">NoteShelf</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="notes.html" class="active">Notes</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="nav-cta">Get Started</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Premium Academic Resources</h1>
+                <p>Access high-quality notes, mind maps, and previous year questions for all subjects</p>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" placeholder="Search notes, chapters, or topics...">
+            </div>
+            
+            <!-- Class Navigation -->
+            <div class="class-nav">
+                <div class="class-tab active" data-class="class11">Class 11</div>
+                <div class="class-tab" data-class="class12">Class 12</div>
+            </div>
+            
+            <!-- Subject Navigation -->
+            <div class="subject-nav">
+                <div class="subject-tab active" data-subject="math">
+                    <img src="https://i.ibb.co/8XYqJ0N/maths.png" alt="Maths">
+                    Mathematics
+                </div>
+                <div class="subject-tab" data-subject="physics">
+                    <img src="https://i.ibb.co/0nLv4s5/phy.png" alt="Physics">
+                    Physics
+                </div>
+                <div class="subject-tab" data-subject="chemistry">
+                    <img src="https://i.ibb.co/0j4k1Dk/chemistry.png" alt="Chemistry">
+                    Chemistry
+                </div>
+                <div class="subject-tab" data-subject="biology">
+                    <img src="https://i.ibb.co/7YkXZzY/bio.png" alt="Biology">
+                    Biology
+                </div>
+                <div class="subject-tab" data-subject="books">
+                    <img src="https://i.ibb.co/7YkXZzY/book.png" alt="Books">
+                    Books
+                </div>
+            </div>
+            
+            <!-- Class 11 Content -->
+            <div id="class11-content">
+                <!-- Mathematics -->
+                <div class="chapter-accordion">
+                    <div class="chapter-item">
+                        <div class="chapter-header">
+                            <h3>Chapter 1: Relations and Functions</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <div class="notes-grid">
+                                <div class="note-card glass-card">
+                                    <div class="note-meta">
+                                        <span><i class="far fa-file-alt"></i> Notes</span>
+                                        <span><i class="far fa-clock"></i> Updated: 15/08/2023</span>
+                                    </div>
+                                    <h3>Complete Chapter Notes</h3>
+                                    <p>Detailed notes covering all concepts of relations and functions with solved examples and practice problems.</p>
+                                    <div class="note-actions">
+                                        <a href="Maths/Relations and Functions.pdf" class="note-btn note-btn-primary">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </a>
+                                        <a href="#" class="note-btn note-btn-secondary">
+                                            <i class="fas fa-eye"></i>
+                                            Preview
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="note-card glass-card">
+                                    <div class="note-meta">
+                                        <span><i class="fas fa-question-circle"></i> PYQs</span>
+                                        <span><i class="far fa-clock"></i> Updated: 10/08/2023</span>
+                                    </div>
+                                    <h3>Previous Year Questions</h3>
+                                    <p>Collection of important questions from previous years with detailed solutions.</p>
+                                    <div class="note-actions">
+                                        <a href="Maths/Relations and Functions-pyq.pdf" class="note-btn note-btn-primary">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="note-card glass-card">
+                                    <div class="note-meta">
+                                        <span><i class="fas fa-brain"></i> Mind Map</span>
+                                        <span><i class="far fa-clock"></i> Updated: 05/08/2023</span>
+                                    </div>
+                                    <h3>Visual Concept Map</h3>
+                                    <p>Comprehensive mind map showing all key concepts and their relationships.</p>
+                                    <div class="note-actions">
+                                        <a href="#" class="note-btn note-btn-primary">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- More chapters can be added here -->
+                    <div class="chapter-item">
+                        <div class="chapter-header">
+                            <h3>Chapter 2: Trigonometry</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <div class="notes-grid">
+                                <div class="note-card glass-card">
+                                    <div class="note-meta">
+                                        <span><i class="far fa-file-alt"></i> Notes</span>
+                                        <span><i class="far fa-clock"></i> Updated: 20/08/2023</span>
+                                    </div>
+                                    <h3>Complete Chapter Notes</h3>
+                                    <p>Detailed notes covering all trigonometric concepts with formulas and examples.</p>
+                                    <div class="note-actions">
+                                        <a href="#" class="note-btn note-btn-primary">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </a>
+                                        <a href="#" class="note-btn note-btn-secondary">
+                                            <i class="fas fa-eye"></i>
+                                            Preview
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Class 12 Content (hidden by default) -->
+            <div id="class12-content" style="display: none;">
+                <!-- Similar structure as Class 11 -->
+                <div class="chapter-accordion">
+                    <div class="chapter-item">
+                        <div class="chapter-header">
+                            <h3>Chapter 1: Relations and Functions</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="chapter-content">
+                            <div class="notes-grid">
+                                <div class="note-card glass-card">
+                                    <div class="note-meta">
+                                        <span><i class="fas fa-brain"></i> Mind Map</span>
+                                        <span><i class="far fa-clock"></i> Updated: 15/08/2023</span>
+                                    </div>
+                                    <h3>Advanced Concept Map</h3>
+                                    <p>Visual representation of all concepts in Relations and Functions for Class 12.</p>
+                                    <div class="note-actions">
+                                        <a href="Maths/mind-maps-12th/relation and function mind map.pdf" class="note-btn note-btn-primary">
+                                            <i class="fas fa-download"></i>
+                                            Download
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="https://i.ibb.co/7YkXZzY/note.png" alt="NoteShelf Logo">
+                        <span class="logo-text">NoteShelf</span>
+                    </div>
+                    <p>Premium educational resources designed to help students excel in their academic journey.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/optimistic__thunder/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/+917800171651"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://hackdevs.netlify.app"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="notes.html">Notes</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Subjects</h4>
+                    <ul class="footer-links">
+                        <li><a href="#math">Mathematics</a></li>
+                        <li><a href="#physics">Physics</a></li>
+                        <li><a href="#chemistry">Chemistry</a></li>
+                        <li><a href="#biology">Biology</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> contact@noteshelf.com</p>
+                    <p><i class="fas fa-phone"></i> +91 7800171651</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2024 NoteShelf | Made with <i class="fas fa-heart" style="color: var(--secondary);"></i> by MGHacker & Silent Programmer
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Class tabs functionality
+            const classTabs = document.querySelectorAll('.class-tab');
+            const classContents = {
+                'class11': document.getElementById('class11-content'),
+                'class12': document.getElementById('class12-content')
+            };
+            
+            classTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Update active tab
+                    classTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const classId = this.getAttribute('data-class');
+                    Object.values(classContents).forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    classContents[classId].style.display = 'block';
+                });
+            });
+            
+            // Subject tabs functionality
+            const subjectTabs = document.querySelectorAll('.subject-tab');
+            
+            subjectTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    subjectTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a complete implementation, this would filter the notes by subject
+                });
+            });
+            
+            // Chapter accordion functionality
+            const chapterHeaders = document.querySelectorAll('.chapter-header');
+            
+            chapterHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                });
+            });
+            
+            // Search functionality
+            const searchBar = document.querySelector('.search-bar');
+            
+            searchBar.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                // In a complete implementation, this would filter notes based on search term
+            });
+        });
+    </script>
+</body>
+</html>

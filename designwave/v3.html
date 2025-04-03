@@ -1,0 +1,3310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designwave | Award-Winning Design Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --dark: #111827;
+            --darker: #0F172A;
+            --light: #F9FAFB;
+            --gray: #E5E7EB;
+            --dark-gray: #374151;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.75rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+
+        p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        /* .navbar {
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(12px);
+            padding: 1.5rem 2rem;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        } */
+
+        /* .navbar.scrolled {
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            color: var(--light) !important;
+        }
+
+        .navbar-brand span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        } */
+
+        /* .nav-link {
+            color: var(--gray) !important;
+            font-weight: 600;
+            margin: 0 0.75rem;
+            position: relative;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            letter-spacing: -0.2px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -2px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        } */
+
+        /* .navbar-toggler {
+            border: none;
+            color: var(--light);
+            padding: 0.5rem;
+        }
+
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: none;
+        } */
+
+        /* .btn-nav {
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-dark);
+            color: var(--light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+        } */
+        /* ==================== */
+        /* PREMIUM NAVBAR STYLES */
+        /* ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 1rem 2rem;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: var(--shadow-xl);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .navbar-brand:hover {
+            transform: translateY(-2px);
+        }
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .brand-text {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbar-toggler {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            margin-right: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 0.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: -0.2px;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover {
+            color: var(--light);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link i {
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 12px;
+            padding: 0.75rem 0;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--glass-border);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover {
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .dropdown-item i {
+            margin-right: 0.75rem;
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+        }
+
+        /* CTA Button */
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 5px 20px rgba(79, 70, 229, 0.4);
+            text-decoration: none;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.5);
+        }
+
+        .nav-cta i {
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 992px) {
+            .navbar-toggler {
+                display: block;
+            }
+            
+            .navbar-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--glass);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border-left: 1px solid var(--glass-border);
+                flex-direction: column;
+                justify-content: center;
+                padding: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            
+            .navbar-menu.active {
+                right: 0;
+                box-shadow: -10px 0 50px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .nav-item {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+            
+            .nav-link {
+                padding: 1rem;
+                justify-content: space-between;
+                border-radius: 8px;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                padding: 0;
+                margin-top: 0.5rem;
+                display: none;
+            }
+            
+            .dropdown-item {
+                padding: 0.75rem 1rem 0.75rem 2rem;
+            }
+            
+            .nav-item:hover .dropdown-menu {
+                transform: none;
+            }
+            
+            .nav-cta {
+                width: 100%;
+                justify-content: center;
+                padding: 1rem;
+            }
+        }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-hero {
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-hero:hover {
+            color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.5);
+        }
+
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--secondary);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn-hero:hover::before {
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .hero-clients {
+            margin-top: 4rem;
+        }
+
+        .clients-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .clients-title::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 1px;
+            background: var(--gray);
+            top: 50%;
+            left: calc(50% + 80px);
+            transform: translateY(-50%);
+        }
+
+        .clients-title::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 1px;
+            background: var(--gray);
+            top: 50%;
+            right: calc(50% + 80px);
+            transform: translateY(-50%);
+        }
+
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .client-logo {
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.7;
+            transition: var(--transition);
+            height: 30px;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-bg {
+            background: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            padding: 0 1.5rem;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            position: relative;
+        }
+
+        .about-badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .about-img {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition);
+            position: relative;
+            height: 500px;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.7));
+            z-index: 1;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: rgba(79, 70, 229, 0.05);
+            border-color: rgba(79, 70, 229, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .service-text {
+            color: var(--gray);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .service-link:hover {
+            color: var(--secondary);
+            gap: 0.75rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: var(--gray);
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .filter-btn.active::after, .filter-btn:hover::after {
+            width: 100%;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            height: 300px;
+        }
+
+        .portfolio-item:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-category {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .portfolio-title {
+            color: var(--light);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .portfolio-link {
+            color: var(--light);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .portfolio-link i {
+            transition: var(--transition);
+        }
+
+        .portfolio-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .portfolio-item:hover .portfolio-category,
+        .portfolio-item:hover .portfolio-title,
+        .portfolio-item:hover .portfolio-link {
+            transform: translateY(0);
+        }
+
+        /* Testimonials Section */
+        .testimonials-slider {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 0 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: serif;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .testimonial-text {
+            color: var(--gray);
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 3px solid var(--primary);
+        }
+
+        .author-info h5 {
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .author-info p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .testimonial-rating {
+            color: var(--accent);
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        } */
+        /* ======================= */
+        /* PREMIUM TESTIMONIALS */
+        /* ======================= */
+        .testimonials {
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 150%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .testimonials-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .testimonial-text::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .testimonial-meta {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .testimonial-author {
+            flex: 1;
+        }
+
+        .testimonial-author h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            color: var(--light);
+        }
+
+        .testimonial-author p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-rating {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+
+        
+
+        /* Client Logos */
+        .client-logos {
+            margin-top: 5rem;
+            padding: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .client-logos-title {
+            text-align: center;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .client-logos-title::before,
+        .client-logos-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .client-logos-title::before {
+            left: 0;
+        }
+
+        .client-logos-title::after {
+            right: 0;
+        }
+
+        .client-logos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .client-logo {
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.7;
+            transition: var(--transition);
+            height: 40px;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section {
+                padding: 6rem 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .testimonial-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .client-logos-title::before,
+            .client-logos-title::after {
+                width: 25%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-description {
+                font-size: 1.1rem;
+            }
+            
+            .client-logos-title::before,
+            .client-logos-title::after {
+                width: 20%;
+            }
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 3rem;
+            height: 100%;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: var(--light);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .info-text p, .info-text a {
+            color: var(--gray);
+            margin: 0;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.05rem;
+        }
+
+        .info-text a:hover {
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 3rem;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .form-control::placeholder {
+            color: var(--dark-gray);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.5);
+        }
+
+        /* Footer */
+        /* .footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 6rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-logo span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-text {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .footer-links h4 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover i {
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.95rem;
+        } */
+
+        /* Back to Top Button
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: 0 5px 20px rgba(79, 70, 229, 0.4);
+            border: none;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
+        } */
+        /* ===================== */
+        /* LUXURY FOOTER DESIGN */
+        /* ===================== */
+        .luxury-footer {
+            position: relative;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            padding: 8rem 0 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .luxury-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.03;
+            z-index: -1;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        /* Brand Column */
+        .footer-brand {
+            position: relative;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-right: 1.25rem;
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            transition: var(--transition);
+        }
+
+        .footer-logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .footer-logo:hover .logo-text {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+        }
+
+        .footer-about {
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .footer-about::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+            border-color: transparent;
+        }
+
+        /* Navigation Columns */
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            position: relative;
+        }
+
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+            padding-left: 10px;
+        }
+
+        .footer-links a:hover::before {
+            width: 30px;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Contact Column */
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .footer-contact i {
+            margin-right: 1.25rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Newsletter Column */
+        /* .newsletter-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            line-height: 1.4;
+        } */
+
+        /* .newsletter-title span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            /* -webkit-background-clip: text; */
+            /* -webkit-text-fill-color: transparent;
+        } 
+        */
+
+        /* .newsletter-form {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }  */
+
+        /* .newsletter-input {
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        } */
+
+        /* .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        } */
+
+        /* .newsletter-btn {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            bottom: 8px;
+            width: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        } */
+
+        /* .newsletter-btn:hover {
+            transform: translateX(5px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+        } */
+
+        /* .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        } */
+
+        /* .payment-method {
+            width: 60px;
+            height: 36px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        } */
+
+        /* .payment-method:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            color: var(--light);
+        } */
+
+        /* Footer Bottom */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 3rem;
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-legal a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--light);
+        }
+
+        .footer-legal a:hover::after {
+            width: 100%;
+        }
+
+        .footer-made {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .footer-made i {
+            color: #ef4444;
+            font-size: 1rem;
+        }
+
+        /* Decorative Elements */
+        .footer-decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            width: 200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .decoration-2 {
+            bottom: 20%;
+            right: 5%;
+            width: 150px;
+            animation: float 10s ease-in-out infinite 2s;
+        }
+
+        .decoration-3 {
+            bottom: 10%;
+            left: 15%;
+            width: 120px;
+            animation: float 12s ease-in-out infinite 1s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-grid {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .luxury-footer {
+                padding: 6rem 0 3rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem 2rem;
+            }
+            
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+            
+            .footer-about {
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .luxury-footer {
+                padding: 5rem 0 2rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        /* ======================= */
+        /* LUXURY BACK TO TOP BUTTON */
+        /* ======================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 70px;
+            height: 70px;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: var(--light);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(79, 70, 229, 0.3) 0%, 
+                rgba(16, 185, 129, 0.3) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(79, 70, 229, 0.4);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .back-to-top:hover::before {
+            opacity: 1;
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .back-to-top i {
+            transition: var(--transition);
+        }
+
+        .back-to-top:hover i {
+            animation: float 1.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .progress-container.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-circle {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 4;
+        }
+
+        .progress-circle-fill {
+            fill: none;
+            stroke: url(#progress-gradient);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 251;
+            stroke-dashoffset: 251;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* Gradient for progress circle */
+        svg.defs-only {
+            position: absolute;
+            height: 0;
+            width: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+            overflow: hidden;
+        }
+
+        /* Floating Particles Effect */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .back-to-top:hover .particle {
+            opacity: 0.3;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .section {
+                padding: 6rem 0;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 5rem 0;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .btn-hero {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .filter-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <!-- <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span>Design</span>wave</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item ms-lg-3 my-2 my-lg-0"><button class="btn btn-nav"><i class="fas fa-paper-plane me-1"></i> Get Quote</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="brand-logo">DW</div>
+                <span class="brand-text">Designwave</span>
+            </a>
+            
+            <button class="navbar-toggler" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">
+                            Home
+                         </i>
+                        </a>
+                        <!-- <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-rocket"></i> Hero Styles</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-star"></i> Featured</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-chart-line"></i> Stats</a></li>
+                        </ul> -->
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">
+                            About
+                        </i>
+                        </a>
+                        <!-- <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-users"></i> Our Team</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-trophy"></i> Awards</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-building"></i> Company</a></li>
+                        </ul> -->
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">
+                            Services
+                        </i>
+                        </a>
+                        <!-- <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-pencil-alt"></i> Branding</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-desktop"></i> Web Design</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-mobile-alt"></i> App Design</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fas fa-palette"></i> UI/UX</a></li>
+                        </ul> -->
+                    </li>
+                    <li class="nav-item">
+                        <a href="#portfolio" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                
+                <a href="#contact" class="nav-cta">
+                    Get Started
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content animate__animated animate__fadeIn">
+                <div class="hero-badge animate__animated animate__fadeInUp animate__delay-1s">
+                    <i class="fas fa-award me-2"></i> Award-Winning Design Agency
+                </div>
+                <h1 class="hero-title">We Craft <span class="text-gradient">Exceptional</span> Digital Experiences</h1>
+                <p class="hero-subtitle">Designwave transforms brands through strategic design solutions that captivate audiences and drive measurable results.</p>
+                <a href="#contact" class="btn btn-hero animate__animated animate__fadeInUp animate__delay-1s">
+                    <i class="fas fa-paper-plane me-1"></i> Start Your Project
+                </a>
+                
+                <div class="hero-clients animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="clients-title">Trusted by innovative companies worldwide</div>
+                    <div class="client-logos">
+                        <img src="https://logo.clearbit.com/google.com?size=80" alt="Google" class="client-logo">
+                        <img src="https://logo.clearbit.com/spotify.com?size=80" alt="Spotify" class="client-logo">
+                        <img src="https://logo.clearbit.com/airbnb.com?size=80" alt="Airbnb" class="client-logo">
+                        <img src="https://logo.clearbit.com/slack.com?size=80" alt="Slack" class="client-logo">
+                        <img src="https://logo.clearbit.com/netflix.com?size=80" alt="Netflix" class="client-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Our Team" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <div class="about-badge">About Our Agency</div>
+                        <h2>We're a Creative Team Focused on Your Success</h2>
+                        <p>Founded in 2015, Designwave has grown from a small design studio to an internationally recognized agency with clients across 15 countries. Our mission is to deliver exceptional design solutions that drive business growth.</p>
+                        <p>We combine strategic thinking with artistic excellence to create designs that not only look beautiful but also achieve measurable results for our clients.</p>
+                        
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">150+</div>
+                                <div class="stat-label">Happy Clients</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">300+</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Industry Awards</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section section-bg">
+        <div class="container">
+            <h2 class="section-title">Our Premium Services</h2>
+            <p class="section-subtitle">We offer comprehensive design solutions tailored to your business needs and goals.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3 class="service-title">Brand Identity Design</h3>
+                    <p class="service-text">Comprehensive branding solutions including logo design, color palettes, typography systems, and brand guidelines to establish a cohesive visual identity.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3 class="service-title">Web & App Design</h3>
+                    <p class="service-text">Custom-designed websites and mobile applications with intuitive user interfaces that enhance engagement and drive conversions.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="service-title">Digital Marketing Design</h3>
+                    <p class="service-text">High-converting social media ads, email campaigns, and landing pages designed to maximize your marketing ROI.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="service-title">Print & Packaging</h3>
+                    <p class="service-text">Striking business cards, brochures, product packaging, and other print materials that make a lasting impression.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Design Strategy</h3>
+                    <p class="service-text">Data-driven design consulting to align your visual identity with business objectives and market positioning.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="service-title">3D & Motion Design</h3>
+                    <p class="service-text">Cutting-edge 3D modeling, animation, and motion graphics to bring your brand to life in digital spaces.</p>
+                    <a href="#" class="service-link">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Featured Work</h2>
+            <p class="section-subtitle">Explore our portfolio of successful design projects across various industries.</p>
+            
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="app">App Design</button>
+                <button class="filter-btn" data-filter="print">Print Design</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="branding">
+                    <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1974&auto=format&fit=crop" alt="Brand Identity Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Brand Identity</p>
+                        <h4 class="portfolio-title">NovaTech Corporate Branding</h4>
+                        <a href="#" class="portfolio-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1964&auto=format&fit=crop" alt="Web Design Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Web Design</p>
+                        <h4 class="portfolio-title">Lumina E-commerce Platform</h4>
+                        <a href="#" class="portfolio-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="app">
+                    <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=2070&auto=format&fit=crop" alt="App Design Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">App Design</p>
+                        <h4 class="portfolio-title">FitnessPro Mobile Application</h4>
+                        <a href="#" class="portfolio-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="print">
+                    <img src="https://images.unsplash.com/photo-1510511336377-1a9caa095849?q=80&amp;w=1974&amp;auto=format&amp;fit=crop" alt="Print Design Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Print Design</p>
+                        <h4 class="portfolio-title">Voyager Travel Magazine</h4>
+                        <a href="#" class="portfolio-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="branding">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1974&auto=format&fit=crop" alt="Brand Identity Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Brand Identity</p>
+                        <h4 class="portfolio-title">UrbanBrew Coffee Roasters</h4>
+                        <a href="#" class="portfolio-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop" alt="Web Design Project" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <p class="portfolio-category">Web Design</p>
+                        <h4 class="portfolio-title">Creative Portfolio Platform</h4>
+                        <a href="#" class="portfolio-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <!-- <section id="testimonials" class="section section-bg">
+        <div class="container">
+            <h2 class="section-title">Client Success Stories</h2>
+            <p class="section-subtitle">Don't just take our word for it - hear what our clients have to say about working with us.</p>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Designwave completely transformed our brand identity. Their strategic approach to design resulted in a 40% increase in customer engagement and significantly strengthened our market position. The team's professionalism and creativity exceeded our expectations at every turn."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Johnson" class="author-img">
+                        <div class="author-info">
+                            <h5>Sarah Johnson</h5>
+                            <p>CMO, TechNova Solutions</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The website Designwave created for us has been instrumental in our digital transformation. Their user-centric design approach led to a 75% improvement in conversion rates and a 60% reduction in bounce rates. Their team was responsive, innovative, and truly understood our business needs."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="author-img">
+                        <div class="author-info">
+                            <h5>Michael Chen</h5>
+                            <p>Founder & CEO, GreenHarvest</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Working with Designwave on our mobile app was a game-changer for our business. Their intuitive UI/UX design resulted in a 90% user retention rate and overwhelmingly positive feedback from our customers. Their attention to detail and commitment to excellence is unmatched in the industry."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Rodriguez" class="author-img">
+                        <div class="author-info">
+                            <h5>Emma Rodriguez</h5>
+                            <p>Product Director, FitLife</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Client Success Stories Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-header">
+                <!-- <span class="section-subtitle">
+                    <i class="fas fa-trophy me-2"></i>Client Success Stories
+                </span> -->
+                <h2 class="section-title">Transforming Brands, Delivering Results</h2>
+                <p class="section-description">
+                    Discover how we've helped industry leaders achieve their goals through strategic design solutions.
+                </p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-cards">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                Designwave completely transformed our digital presence. Their strategic approach resulted in a 150% increase in online engagement and a 75% improvement in conversion rates. The team's creativity and attention to detail were exceptional.
+                            </p>
+                            <div class="testimonial-meta">
+                                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson" class="testimonial-avatar">
+                                <div class="testimonial-author">
+                                    <h4>Sarah Johnson</h4>
+                                    <p>CMO, TechNova Solutions</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">150%</div>
+                                <div class="stat-label">Engagement</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">75%</div>
+                                <div class="stat-label">Conversions</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">12 weeks</div>
+                                <div class="stat-label">Timeline</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                Our rebrand with Designwave was a game-changer. They captured our vision perfectly and delivered a brand identity that elevated our market position. The website they designed increased our lead generation by 200%.
+                            </p>
+                            <div class="testimonial-meta">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="testimonial-avatar">
+                                <div class="testimonial-author">
+                                    <h4>Michael Chen</h4>
+                                    <p>CEO, GreenHarvest</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">200%</div>
+                                <div class="stat-label">Leads</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.9/5</div>
+                                <div class="stat-label">Satisfaction</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8 weeks</div>
+                                <div class="stat-label">Timeline</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                The mobile app Designwave created for us achieved a 90% user retention rate. Their UX design approach was data-driven and innovative, resulting in an app that our customers love to use daily.
+                            </p>
+                            <div class="testimonial-meta">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="testimonial-avatar">
+                                <div class="testimonial-author">
+                                    <h4>Emma Rodriguez</h4>
+                                    <p>Product Director, FitLife</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">90%</div>
+                                <div class="stat-label">Retention</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.8/5</div>
+                                <div class="stat-label">App Store</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">10 weeks</div>
+                                <div class="stat-label">Timeline</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client Logos -->
+                <!-- <div class="client-logos">
+                    <h3 class="client-logos-title">Trusted By Industry Leaders</h3>
+                    <div class="client-logos-grid">
+                        <img src="https://logo.clearbit.com/google.com?size=120" alt="Google" class="client-logo">
+                        <img src="https://logo.clearbit.com/spotify.com?size=120" alt="Spotify" class="client-logo">
+                        <img src="https://logo.clearbit.com/airbnb.com?size=120" alt="Airbnb" class="client-logo">
+                        <img src="https://logo.clearbit.com/slack.com?size=120" alt="Slack" class="client-logo">
+                        <img src="https://logo.clearbit.com/netflix.com?size=120" alt="Netflix" class="client-logo">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Let's Create Something Amazing</h2>
+            <p class="section-subtitle">Ready to elevate your brand with exceptional design? Get in touch with our team today.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 class="mb-4">Contact Information</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Email</h4>
+                            <a href="mailto:designwave528@gmail.com">designwave528@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Phone</h4>
+                            <a href="tel:+919369863360">+91 9369863360</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/919369863360">+91 9369863360</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Location</h4>
+                            <p>Uttar Pradesh, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>Working Hours</h4>
+                            <p>Monday - Friday: 9AM - 6PM</p>
+                            <p>Saturday: 10AM - 4PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option>Brand Identity Design</option>
+                                <option>Web & App Design</option>
+                                <option>Digital Marketing Design</option>
+                                <option>Print & Packaging</option>
+                                <option>Design Strategy</option>
+                                <option>3D & Motion Design</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fas fa-paper-plane me-1"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <a href="#" class="footer-logo"><span>Design</span>wave</a>
+                        <p class="footer-text">We create designs that make an impact and help businesses stand out in the digital world.</p>
+                        
+                        <div class="social-links">
+                            <a href="https://wa.me/919369863360" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.instagram.com/design_wave.io?igsh=YjhybXdpZGl2cDAw" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <div class="footer-links">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                                <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                                <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                                <li><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                                <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <div class="footer-links">
+                            <h4>Services</h4>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Brand Identity</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Web Design</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> App Design</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Print Design</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Motion Design</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <div class="footer-links">
+                            <h4>Contact Info</h4>
+                            <ul>
+                                <li><a href="mailto:designwave528@gmail.com"><i class="fas fa-envelope"></i> designwave528@gmail.com</a></li>
+                                <li><a href="tel:+919369863360"><i class="fas fa-phone-alt"></i> +91 9369863360</a></li>
+                                <li><a href="https://wa.me/919369863360"><i class="fab fa-whatsapp"></i> WhatsApp: +91 9369863360</a></li>
+                                <li><a href="#"><i class="fas fa-map-marker-alt"></i> Uttar Pradesh, India</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Designwave. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ef4444;"></i> by Designwave Team</p>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+    <!-- Luxury Footer -->
+    <footer class="luxury-footer">
+        <!-- Decorative elements -->
+        <svg class="footer-decoration decoration-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--primary)" d="M45.5,-53.4C58.5,-41.6,68.3,-26.3,70.9,-9.4C73.5,7.5,68.9,25.9,56.2,38.7C43.5,51.5,22.7,58.7,2.7,56.5C-17.3,54.3,-34.6,42.7,-46.1,28.7C-57.6,14.7,-63.3,-1.7,-59.8,-16.3C-56.3,-30.9,-43.6,-43.7,-29.2,-55.1C-14.8,-66.5,1.2,-76.5,16.3,-73.5C31.4,-70.5,45.5,-54.5,45.5,-53.4Z" transform="translate(100 100)" />
+        </svg>
+        
+        <svg class="footer-decoration decoration-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--secondary)" d="M48.8,-53.4C61.8,-41.3,70.1,-24.7,72.8,-6.8C75.5,11.1,72.6,30.3,61.2,43.9C49.8,57.5,29.9,65.5,9.3,57.6C-11.4,49.7,-32.8,25.9,-43.5,1.1C-54.2,-23.7,-54.2,-49.5,-40.8,-61.6C-27.3,-73.7,-0.5,-72.1,18.6,-63.9C37.6,-55.7,48.8,-40.9,48.8,-53.4Z" transform="translate(100 100)" />
+        </svg>
+        
+        <svg class="footer-decoration decoration-3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--accent)" d="M39.6,-50.6C52.3,-42.1,64,-32.4,68.4,-19.9C72.8,-7.5,69.9,7.8,63.3,21.3C56.7,34.8,46.4,46.6,33.7,55.1C21,63.6,5.9,68.8,-9.2,67.1C-24.3,65.4,-39.5,56.8,-50.8,44.6C-62.1,32.4,-69.5,16.7,-70.8,-0.6C-72.1,-17.9,-67.3,-35.8,-55.9,-48.8C-44.5,-61.8,-26.6,-69.9,-9.3,-63.9C8,-57.9,16,-37.8,39.6,-50.6Z" transform="translate(100 100)" />
+        </svg>
+        
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <div class="logo-icon">DW</div>
+                        <div class="logo-text">Designwave</div>
+                    </a>
+                    <p class="footer-about">
+                        We transform visions into exceptional digital experiences. Our award-winning designs blend aesthetics with functionality to deliver measurable business results for global clients.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        <a href="https://www.instagram.com/design_wave.io?igsh=YjhybXdpZGl2cDAw" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links Column -->
+                <div class="footer-nav">
+                    <h3 class="footer-heading">Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services Column -->
+                <div class="footer-nav">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Brand Strategy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Web Design</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Motion Design</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Design Systems</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Column -->
+                <div class="footer-nav">
+                    <h3 class="footer-heading">Contact</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> designwave528@gmail.com</p>
+                        <p><i class="fas fa-phone-alt"></i> +91 9369863360</p>
+                        <p><i class="fab fa-whatsapp"></i> +91 9369863360</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Uttar Pradesh, India</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</p>
+                    </div>
+                </div>
+                
+                <!-- Newsletter Column -->
+                <!-- <div class="footer-nav">
+                    <h3 class="newsletter-title">Join our <span>exclusive</span> design newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div class="payment-methods">
+                        <div class="payment-method"><i class="fab fa-cc-visa"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-mastercard"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-amex"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-paypal"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-stripe"></i></div>
+                    </div>
+                </div> -->
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2024 Designwave. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">GDPR Compliance</a>
+                </div>
+                <p class="footer-made">
+                    Crafted with <i class="fas fa-heart"></i> by Designwave Team
+                </p>
+            </div>
+        </div>
+    </footer>
+
+        <!-- SVG Definitions -->
+        <svg class="defs-only">
+            <defs>
+                <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4F46E5" />
+                    <stop offset="100%" stop-color="#10B981" />
+                </linearGradient>
+            </defs>
+        </svg>
+    
+        <!-- Progress Indicator -->
+        <div class="progress-container" id="progressContainer">
+            <svg class="progress-circle" viewBox="0 0 100 100">
+                <circle class="progress-circle-bg" cx="50" cy="50" r="40"/>
+                <circle class="progress-circle-fill" cx="50" cy="50" r="40"/>
+            </svg>
+        </div>
+    
+        <!-- Luxury Back to Top Button -->
+        <button class="back-to-top" id="backToTop">
+            <div class="particles" id="particles"></div>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Testimonials slider
+        $(document).ready(function(){
+            $('.testimonials-slider').slick({
+                dots: true,
+                arrows: false,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                pauseOnHover: true,
+                cssEase: 'cubic-bezier(0.25, 0.8, 0.25, 1)'
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+    </script>
+    <script>
+        // Mobile Menu Toggle
+        const navbarToggle = document.getElementById('navbarToggle');
+        const navbarMenu = document.getElementById('navbarMenu');
+        
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+            navbarToggle.innerHTML = navbarMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navbarMenu.classList.remove('active');
+                    navbarToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Dropdown menu functionality for mobile
+        document.querySelectorAll('.nav-link i.fa-chevron-down').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const dropdown = this.parentElement.nextElementSibling;
+                    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                    this.classList.toggle('fa-chevron-up');
+                }
+            });
+        });
+    </script>
+    <script>
+        // Simple animation for testimonial cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            testimonialCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+     <script>
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.querySelector('.progress-circle-fill');
+        const particlesContainer = document.getElementById('particles');
+        
+        // Create particles
+        function createParticles() {
+            const particleCount = 12;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 4 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 2;
+                const duration = Math.random() * 3 + 2;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Add animation
+                particle.style.animation = `particleFloat ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Update progress indicator
+        function updateProgress() {
+            const scrollHeight = document.documentElement.scrollHeight;
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / (scrollHeight - height)) * 100;
+            const offset = 251 - (251 * scrollPercent) / 100;
+            
+            progressFill.style.strokeDashoffset = offset;
+        }
+        
+        // Toggle visibility
+        function toggleBackToTop() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+                progressContainer.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+                progressContainer.classList.remove('active');
+            }
+            updateProgress();
+        }
+        
+        // Smooth scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Add temporary pulse effect
+            backToTop.style.animation = 'pulse 0.5s ease';
+            setTimeout(() => {
+                backToTop.style.animation = '';
+            }, 500);
+        }
+        
+        // Initialize
+        createParticles();
+        toggleBackToTop();
+        
+        // Event listeners
+        window.addEventListener('scroll', toggleBackToTop);
+        backToTop.addEventListener('click', scrollToTop);
+        
+        // Keyframes for particle animation
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(`
+            @keyframes particleFloat {
+                0% { transform: translate(0, 0); opacity: 0; }
+                50% { opacity: 0.3; }
+                100% { transform: translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px); opacity: 0; }
+            }
+        `, styleSheet.cssRules.length);
+        
+        styleSheet.insertRule(`
+            @keyframes pulse {
+                0% { transform: scale(1); box-shadow: 0 20px 50px rgba(79, 70, 229, 0.3); }
+                50% { transform: scale(0.95); box-shadow: 0 20px 50px rgba(79, 70, 229, 0.6); }
+                100% { transform: scale(1); box-shadow: 0 20px 50px rgba(79, 70, 229, 0.3); }
+            }
+        `, styleSheet.cssRules.length);
+    </script>
+    <script>
+        // Animate elements on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const footerColumns = document.querySelectorAll('.footer-nav');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            footerColumns.forEach(column => {
+                column.style.opacity = '0';
+                column.style.transform = 'translateY(30px)';
+                column.style.transition = 'var(--transition)';
+                observer.observe(column);
+            });
+            
+            // Add hover effect to payment methods
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('mouseenter', () => {
+                    method.style.transform = 'translateY(-5px)';
+                    method.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                });
+                method.addEventListener('mouseleave', () => {
+                    method.style.transform = 'translateY(0)';
+                    method.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

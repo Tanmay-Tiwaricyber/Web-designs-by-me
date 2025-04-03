@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | NoteShelf - Premium Academic Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="res/note.png" type="image/x-icon">
+    <style>
+        :root {
+            --primary: #2a3b8f;
+            --primary-light: #3a4ca8;
+            --secondary: #d4af37;
+            --light: #f9f9f9;
+            --dark: #1a1a2e;
+            --gray: #888;
+            --light-gray: #e6e6e6;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 2px 18px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 15px 45px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Marcellus', serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.96);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        header.scrolled {
+            padding: 12px 0;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 42px;
+            transition: var(--transition);
+        }
+        
+        .logo-text {
+            font-family: 'Marcellus', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--secondary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s ease;
+        }
+        
+        .logo:hover .logo-text::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 10px 28px;
+            border-radius: 30px;
+            margin-left: 30px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.6rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            padding: 200px 0 100px;
+            background: linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="10" height="10" x="0" y="0" fill="%232a3b8f" opacity="0.03"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .about-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            color: var(--primary);
+        }
+        
+        .about-hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+        
+        /* About Content */
+        .about-section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(245,247,255,1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 0;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(42,59,143,0.1) 0%, rgba(42,59,143,0) 100%);
+            z-index: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .about-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+        }
+        
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(245,247,255,0) 100%);
+            z-index: 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(42,59,143,0.03) 0%, rgba(42,59,143,0) 100%);
+            z-index: -1;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 3px solid var(--secondary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+        
+        .team-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .team-card .position {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .team-card p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .team-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(42,59,143,0.1);
+            border-radius: 50%;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .team-social a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="10" height="10" x="0" y="0" fill="white" opacity="0.05"/></svg>');
+        }
+        
+        .mission-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mission-container h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .mission-container p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .mission-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .mission-stat {
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .mission-stat-number {
+            font-family: 'Marcellus', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .mission-stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(26,26,46,1) 0%, rgba(26,26,46,0) 100%);
+            z-index: 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-logo img {
+            height: 42px;
+        }
+        
+        .footer-logo-text {
+            font-family: 'Marcellus', serif;
+            font-size: 1.6rem;
+        }
+        
+        .footer-about p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .footer-contact i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-bottom a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-image {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .about-content {
+                text-align: center;
+            }
+            
+            .about-content h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 350px;
+                height: 100vh;
+                background-color: white;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 1000;
+                padding: 100px 40px 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            nav a {
+                font-size: 1.15rem;
+            }
+            
+            .nav-cta {
+                margin: 30px 0 0;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .mission-container h2 {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 25px;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .mission-container h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="res/note.png" alt="NoteShelf Logo">
+                <span class="logo-text">NoteShelf</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="notes.html">Notes</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="notes.html" class="nav-cta">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content">
+                <h1>Our Commitment to Academic Excellence</h1>
+                <p>Discover the vision and values that drive NoteShelf to deliver premium educational resources</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="NoteShelf Team">
+                </div>
+                <div class="about-content">
+                    <h2>About NoteShelf</h2>
+                    <p>NoteShelf was born from a simple yet powerful idea: to create a platform where students could access high-quality, curated academic resources without the clutter and inconsistency found elsewhere.</p>
+                    <p>Our team of Ivy League-educated specialists and top-performing students work tirelessly to ensure every note, guide, and resource meets our exacting standards of clarity, accuracy, and educational value.</p>
+                    <p>What began as a passion project has grown into a trusted resource for thousands of students worldwide, all united by a shared commitment to academic excellence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet The Founders</h2>
+                <p>The brilliant minds behind NoteShelf's premium educational resources</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="MGHacker">
+                    </div>
+                    <h3>MGHacker</h3>
+                    <span class="position">Lead Developer & Educator</span>
+                    <p>With a background in computer science and education, MGHacker brings technical excellence and pedagogical expertise to the NoteShelf platform.</p>
+                    <div class="team-social">
+                        <a href="https://www.instagram.com/optimistic__thunder/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/+917800171651"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://hackdevs.netlify.app"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Silent Programmer">
+                    </div>
+                    <h3>Silent Programmer</h3>
+                    <span class="position">Chief Architect</span>
+                    <p>A systems expert with a passion for education, Silent Programmer ensures NoteShelf's infrastructure delivers seamless, reliable access to premium content.</p>
+                    <div class="team-social">
+                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/+916306256015"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://github.com/Tanmay-Tiwaricyber"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-container">
+                <h2>Our Mission</h2>
+                <p>To democratize access to premium educational resources by eliminating barriers to quality learning materials, while maintaining the highest standards of academic excellence.</p>
+                
+                <div class="mission-stats">
+                    <div class="mission-stat">
+                        <div class="mission-stat-number">10K+</div>
+                        <div class="mission-stat-label">Premium Notes</div>
+                    </div>
+                    <div class="mission-stat">
+                        <div class="mission-stat-number">98%</div>
+                        <div class="mission-stat-label">Satisfaction Rate</div>
+                    </div>
+                    <div class="mission-stat">
+                        <div class="mission-stat-number">200+</div>
+                        <div class="mission-stat-label">Subject Experts</div>
+                    </div>
+                    <div class="mission-stat">
+                        <div class="mission-stat-number">24/7</div>
+                        <div class="mission-stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="res/note.png" alt="NoteShelf Logo">
+                        <span class="footer-logo-text">NoteShelf</span>
+                    </div>
+                    <p>The premier destination for discerning students seeking academic excellence through curated knowledge resources.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/optimistic__thunder/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/+917800171651"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://hackdevs.netlify.app"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="notes.html">Note Library</a></li>
+                        <li><a href="#">Study Guides</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Exam Preparation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Our Experts</a></li>
+                        <li><a href="#">Methodology</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Connect</h3>
+                    <p><i class="fas fa-envelope"></i> inquiries@noteshelf.academy</p>
+                    <p><i class="fas fa-phone"></i> +91 7800171651</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Academic District, Bangalore</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 NoteShelf Academic Resources. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: var(--secondary);"></i> by <a href="https://hackdevs.netlify.app">MGHacker</a> & <a href="https://github.com/Tanmay-Tiwaricyber">Silent Programmer</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

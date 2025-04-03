@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Course - File Browser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #A29BFE;
+            --accent: #00CEC9;
+            --dark: #0F0E15;
+            --darker: #0A0910;
+            --light: #F1F2F6;
+            --gray: #636E72;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .file-browser {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+        
+        .browser-header {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .browser-path {
+            flex: 1;
+            font-family: monospace;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            padding: 8px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .browser-controls {
+            display: flex;
+            gap: 10px;
+            margin-left: 15px;
+        }
+        
+        .control-btn {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--accent);
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            min-height: 300px;
+        }
+        
+        .file-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        
+        .file-item:hover {
+            background: rgba(108, 92, 231, 0.1);
+            transform: translateY(-3px);
+            border-color: rgba(108, 92, 231, 0.3);
+        }
+        
+        .file-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .folder .file-icon {
+            color: var(--primary);
+        }
+        
+        .pdf .file-icon {
+            color: #FF5252;
+        }
+        
+        .video .file-icon {
+            color: #FF4081;
+        }
+        
+        .text .file-icon {
+            color: var(--accent);
+        }
+        
+        .image .file-icon {
+            color: #69F0AE;
+        }
+        
+        .code .file-icon {
+            color: #FFAB40;
+        }
+        
+        .file-name {
+            font-size: 0.9rem;
+            color: var(--light);
+            word-break: break-word;
+            width: 100%;
+        }
+        
+        .file-size {
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb:hover {
+            color: var(--accent);
+        }
+        
+        .breadcrumb-separator {
+            color: var(--gray);
+            margin: 0 5px;
+        }
+        
+        .empty-folder {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .file-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="file-browser">
+        <div class="browser-header">
+            <div class="browser-path" id="current-path">H:\chatgpt-course</div>
+            <div class="browser-controls">
+                <div class="control-btn" id="go-back" title="Back"><i class="fas fa-arrow-left"></i></div>
+                <div class="control-btn" id="go-forward" title="Forward"><i class="fas fa-arrow-right"></i></div>
+                <div class="control-btn" id="refresh" title="Refresh"><i class="fas fa-sync-alt"></i></div>
+            </div>
+        </div>
+        
+        <div class="breadcrumbs" id="breadcrumbs"></div>
+        
+        <div class="file-grid" id="file-grid">
+            <!-- Files and folders will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // File type mapping to icons
+        const fileTypes = {
+            folder: { icon: 'fa-folder', class: 'folder' },
+            pdf: { icon: 'fa-file-pdf', class: 'pdf' },
+            video: { icon: 'fa-file-video', class: 'video' },
+            text: { icon: 'fa-file-alt', class: 'text' },
+            image: { icon: 'fa-file-image', class: 'image' },
+            code: { icon: 'fa-file-code', class: 'code' },
+            default: { icon: 'fa-file', class: '' }
+        };
+        
+        // Simulated file system database
+        const fileSystemDB = {
+            'H:\\chatgpt-course': [
+                { name: 'Module 1 - Fundamentals', type: 'folder', size: '--' },
+                { name: 'Module 2 - Advanced', type: 'folder', size: '--' },
+                { name: 'Module 3 - API', type: 'folder', size: '--' },
+                { name: 'Cheat Sheet.pdf', type: 'pdf', size: '2.4 MB' },
+                { name: 'Getting Started.mp4', type: 'video', size: '45.7 MB' },
+                { name: 'Course Syllabus.pdf', type: 'pdf', size: '1.1 MB' }
+            ],
+            'H:\\chatgpt-course\\Module 1 - Fundamentals': [
+                { name: 'Introduction to ChatGPT', type: 'folder', size: '--' },
+                { name: 'Basic Prompts', type: 'folder', size: '--' },
+                { name: 'Prompt Examples.txt', type: 'text', size: '128 KB' },
+                { name: 'Fundamentals.mp4', type: 'video', size: '156 MB' }
+            ],
+            'H:\\chatgpt-course\\Module 1 - Fundamentals\\Introduction to ChatGPT': [
+                { name: 'Lecture 1.mp4', type: 'video', size: '78 MB' },
+                { name: 'Lecture Notes.pdf', type: 'pdf', size: '3.2 MB' },
+                { name: 'Exercise 1.txt', type: 'text', size: '56 KB' }
+            ],
+            'H:\\chatgpt-course\\Module 1 - Fundamentals\\Basic Prompts': [
+                { name: 'Prompt Patterns.pdf', type: 'pdf', size: '2.1 MB' },
+                { name: 'Examples.txt', type: 'text', size: '89 KB' },
+                { name: 'Practice Exercises', type: 'folder', size: '--' }
+            ],
+            'H:\\chatgpt-course\\Module 2 - Advanced': [
+                { name: 'Advanced Techniques.mp4', type: 'video', size: '210 MB' },
+                { name: 'API Basics', type: 'folder', size: '--' },
+                { name: 'Code Examples', type: 'folder', size: '--' },
+                { name: 'Reference Guide.pdf', type: 'pdf', size: '5.6 MB' }
+            ],
+            'H:\\chatgpt-course\\Module 3 - API': [
+                { name: 'API Documentation.pdf', type: 'pdf', size: '3.8 MB' },
+                { name: 'Python Examples', type: 'folder', size: '--' },
+                { name: 'JavaScript Examples', type: 'folder', size: '--' },
+                { name: 'Demo Project', type: 'folder', size: '--' }
+            ]
+        };
+        
+        // Navigation history
+        let history = {
+            paths: ['H:\\chatgpt-course'],
+            currentIndex: 0
+        };
+        
+        // Get current path
+        function getCurrentPath() {
+            return history.paths[history.currentIndex];
+        }
+        
+        // Get files for current path
+        function getCurrentFiles() {
+            return fileSystemDB[getCurrentPath()] || [];
+        }
+        
+        // Update breadcrumbs
+        function updateBreadcrumbs() {
+            const breadcrumbs = document.getElementById('breadcrumbs');
+            const path = getCurrentPath();
+            const parts = path.split('\\');
+            
+            breadcrumbs.innerHTML = '';
+            
+            parts.forEach((part, index) => {
+                if (index > 0) {
+                    const separator = document.createElement('span');
+                    separator.className = 'breadcrumb-separator';
+                    separator.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    breadcrumbs.appendChild(separator);
+                }
+                
+                const crumb = document.createElement('div');
+                crumb.className = 'breadcrumb';
+                crumb.textContent = part;
+                
+                // Build the path up to this crumb
+                const pathToHere = parts.slice(0, index + 1).join('\\');
+                crumb.addEventListener('click', () => {
+                    navigateTo(pathToHere);
+                });
+                
+                breadcrumbs.appendChild(crumb);
+            });
+        }
+        
+        // Navigate to a specific path
+        function navigateTo(path) {
+            if (!fileSystemDB[path]) {
+                console.warn(`Path ${path} not found in file system`);
+                return;
+            }
+            
+            // Add to history if it's a new path
+            if (path !== getCurrentPath()) {
+                // If we're not at the end of history, truncate forward history
+                if (history.currentIndex < history.paths.length - 1) {
+                    history.paths = history.paths.slice(0, history.currentIndex + 1);
+                }
+                history.paths.push(path);
+                history.currentIndex = history.paths.length - 1;
+            }
+            
+            renderFiles();
+        }
+        
+        // Go back in history
+        function goBack() {
+            if (history.currentIndex > 0) {
+                history.currentIndex--;
+                renderFiles();
+            }
+        }
+        
+        // Go forward in history
+        function goForward() {
+            if (history.currentIndex < history.paths.length - 1) {
+                history.currentIndex++;
+                renderFiles();
+            }
+        }
+        
+        // Refresh current view
+        function refresh() {
+            renderFiles();
+        }
+        
+        // Render files for current path
+        function renderFiles() {
+            const fileGrid = document.getElementById('file-grid');
+            const currentPath = getCurrentPath();
+            const files = getCurrentFiles();
+            
+            document.getElementById('current-path').textContent = currentPath;
+            updateBreadcrumbs();
+            
+            fileGrid.innerHTML = '';
+            
+            if (files.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'empty-folder';
+                empty.textContent = 'This folder is empty';
+                fileGrid.appendChild(empty);
+                return;
+            }
+            
+            files.forEach(file => {
+                const fileType = file.type === 'folder' ? fileTypes.folder : getFileType(file.name);
+                
+                const fileItem = document.createElement('div');
+                fileItem.className = `file-item ${fileType.class}`;
+                fileItem.innerHTML = `
+                    <div class="file-icon"><i class="fas ${fileType.icon}"></i></div>
+                    <div class="file-name">${file.name}</div>
+                    <div class="file-size">${file.size}</div>
+                `;
+                
+                fileItem.addEventListener('click', () => {
+                    if (file.type === 'folder') {
+                        const newPath = `${currentPath}\\${file.name}`;
+                        navigateTo(newPath);
+                    } else {
+                        openFile(currentPath, file);
+                    }
+                });
+                
+                fileGrid.appendChild(fileItem);
+            });
+        }
+        
+        // Get file type based on extension
+        function getFileType(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            if (!ext) return fileTypes.folder;
+            
+            if (['pdf'].includes(ext)) return fileTypes.pdf;
+            if (['mp4', 'mov', 'avi', 'mkv', 'webm'].includes(ext)) return fileTypes.video;
+            if (['txt', 'doc', 'docx', 'md', 'rtf'].includes(ext)) return fileTypes.text;
+            if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'bmp'].includes(ext)) return fileTypes.image;
+            if (['js', 'py', 'java', 'c', 'cpp', 'html', 'css', 'json'].includes(ext)) return fileTypes.code;
+            
+            return fileTypes.default;
+        }
+        
+        // Handle file opening (simulated)
+        function openFile(path, file) {
+            alert(`Opening file: ${path}\\${file.name}\n\nIn a real implementation, this would:\n1. Check file type\n2. Open in appropriate viewer\n3. Handle authentication if needed`);
+            
+            // This would be replaced with actual file opening logic
+            // For example:
+            // if (file.type === 'pdf') {
+            //     window.open(`/viewer?file=${encodeURIComponent(path + '\\' + file.name)}`, '_blank');
+            // } else if (file.type === 'video') {
+            //     // Show video player modal
+            // }
+        }
+        
+        // Initialize file browser
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFiles();
+            
+            // Set up event listeners for controls
+            document.getElementById('go-back').addEventListener('click', goBack);
+            document.getElementById('go-forward').addEventListener('click', goForward);
+            document.getElementById('refresh').addEventListener('click', refresh);
+        });
+        
+        // Note: In a real implementation, you would need server-side code to:
+        // 1. Authenticate users
+        // 2. Access the actual file system
+        // 3. Handle file operations securely
+    </script>
+</body>
+</html>

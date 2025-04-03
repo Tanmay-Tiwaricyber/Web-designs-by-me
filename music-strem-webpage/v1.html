@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Premium | High-Fidelity Music Streaming</title>
+    <style>
+        /* === Global Styles === */
+        :root {
+            --bg-dark: #121212;
+            --bg-light: #1e1e1e;
+            --accent-primary: #8d6c9f;
+            --accent-secondary: #ff6b6b;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+        
+        /* === Navigation Bar === */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: linear-gradient(to right, #121212, #1a1a1a);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links .premium {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--bg-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            width: 300px;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            padding: 5px;
+            outline: none;
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        /* === Main Content === */
+        main {
+            padding: 30px 40px;
+            overflow-y: auto;
+        }
+        
+        .greeting {
+            margin-bottom: 30px;
+        }
+        
+        .greeting h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .greeting p {
+            color: var(--text-secondary);
+        }
+        
+        /* Featured Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, #2c1a3a, #1a1a2e);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-content {
+            flex: 1;
+            z-index: 2;
+        }
+        
+        .featured-content .badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .featured-content h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .featured-content p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            max-width: 500px;
+        }
+        
+        .play-button {
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(141, 108, 159, 0.4);
+        }
+        
+        .featured-art {
+            width: 250px;
+            height: 250px;
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: rotate(10deg);
+            margin-right: -50px;
+            z-index: 1;
+        }
+        
+        /* Content Sections */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-header h3 {
+            font-size: 24px;
+        }
+        
+        .section-header a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .section-header a:hover {
+            color: var(--text-primary);
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            background: #282828;
+            transform: translateY(-5px);
+        }
+        
+        .card-img {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .card .play-icon {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            background: var(--accent-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card:hover .play-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Premium Features Section */
+        .premium-features {
+            background: linear-gradient(135deg, #1a1a2e, #2c1a3a);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .premium-features h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+        
+        .feature-item h4 {
+            margin-bottom: 10px;
+        }
+        
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .cta-button {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(141, 108, 159, 0.5);
+        }
+        
+        /* === Player Bar === */
+        .player-bar {
+            background: var(--bg-light);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .now-playing {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 250px;
+        }
+        
+        .now-playing img {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+        }
+        
+        .song-info h4 {
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+        
+        .song-info p {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        
+        .player-controls {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-buttons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .control-buttons button {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .control-buttons button.play-pause {
+            background: white;
+            color: black;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .control-buttons button:hover {
+            color: var(--accent-primary);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            max-width: 500px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 30%;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .player-options {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 250px;
+            justify-content: flex-end;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .volume-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 70%;
+            background: var(--text-primary);
+            border-radius: 2px;
+        }
+        
+        .quality-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">harmony</div>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">Browse</a>
+            <a href="#">Library</a>
+            <a href="#">Live</a>
+            <a href="#" class="premium">Premium</a>
+        </div>
+        <div class="search-bar">
+            <i class="fas fa-search" style="color: var(--text-secondary); margin-right: 8px;"></i>
+            <input type="text" placeholder="Search for songs, artists, or podcasts">
+        </div>
+        <div class="user-menu">
+            <i class="fas fa-bell" style="color: var(--text-secondary); font-size: 18px; cursor: pointer;"></i>
+            <div class="user-avatar">
+                <i class="fas fa-user" style="color: white; font-size: 14px;"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main>
+        <div class="greeting">
+            <h1>Good evening, Alex</h1>
+            <p>Ready to discover something new today?</p>
+        </div>
+        
+        <!-- Featured Banner -->
+        <div class="featured-banner">
+            <div class="featured-content">
+                <span class="badge">PREMIUM EXCLUSIVE</span>
+                <h2>Chill Vibes Only</h2>
+                <p>Curated playlist of relaxing tracks to help you unwind after a long day. Updated weekly with new discoveries.</p>
+                <button class="play-button">
+                    <i class="fas fa-play"></i>
+                    Play Now
+                </button>
+            </div>
+            <img src="https://source.unsplash.com/random/600x600/?album,cover" alt="Featured Playlist" class="featured-art">
+        </div>
+        
+        <!-- Recently Played -->
+        <div class="section">
+            <div class="section-header">
+                <h3>Recently Played</h3>
+                <a href="#">See all</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover1" alt="Album Cover" class="card-img">
+                    <h4>Midnight Memories</h4>
+                    <p>Various Artists</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover2" alt="Album Cover" class="card-img">
+                    <h4>Summer Hits 2023</h4>
+                    <p>Top Charts</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover3" alt="Album Cover" class="card-img">
+                    <h4>Deep Focus</h4>
+                    <p>Productivity Mix</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover4" alt="Album Cover" class="card-img">
+                    <h4>Jazz Classics</h4>
+                    <p>Legendary Sessions</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover5" alt="Album Cover" class="card-img">
+                    <h4>Workout Energy</h4>
+                    <p>Power Mix</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Made For You -->
+        <div class="section">
+            <div class="section-header">
+                <h3>Made For You</h3>
+                <a href="#">See all</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover6" alt="Album Cover" class="card-img">
+                    <h4>Daily Mix 1</h4>
+                    <p>Based on your recent listens</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover7" alt="Album Cover" class="card-img">
+                    <h4>Discover Weekly</h4>
+                    <p>Fresh picks just for you</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover8" alt="Album Cover" class="card-img">
+                    <h4>Throwback Thursday</h4>
+                    <p>Your nostalgic favorites</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover9" alt="Album Cover" class="card-img">
+                    <h4>Evening Relaxation</h4>
+                    <p>Wind down with these tracks</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover10" alt="Album Cover" class="card-img">
+                    <h4>Focus Flow</h4>
+                    <p>Concentration booster</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- New Releases -->
+        <div class="section">
+            <div class="section-header">
+                <h3>New Releases</h3>
+                <a href="#">See all</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover11" alt="Album Cover" class="card-img">
+                    <h4>Midnight Echoes</h4>
+                    <p>The Night Collective</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover12" alt="Album Cover" class="card-img">
+                    <h4>Solar Flare</h4>
+                    <p>Nova Rhythm</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover13" alt="Album Cover" class="card-img">
+                    <h4>Urban Dreams</h4>
+                    <p>City Lights</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover14" alt="Album Cover" class="card-img">
+                    <h4>Acoustic Sessions</h4>
+                    <p>Emma Walker</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://source.unsplash.com/random/300x300/?music,cover15" alt="Album Cover" class="card-img">
+                    <h4>Electronic Sunrise</h4>
+                    <p>Digital Waves</p>
+                    <div class="play-icon">
+                        <i class="fas fa-play" style="color: white; margin-left: 2px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Premium Features -->
+        <div class="premium-features">
+            <h3>Experience Harmony Premium</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-music" style="color: var(--accent-primary); font-size: 24px;"></i>
+                    </div>
+                    <h4>High Fidelity Audio</h4>
+                    <p>Lossless quality with 24-bit depth for studio-quality sound</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headphones" style="color: var(--accent-primary); font-size: 24px;"></i>
+                    </div>
+                    <h4>Offline Listening</h4>
+                    <p>Download your favorite tracks and play them anywhere</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-ad" style="color: var(--accent-primary); font-size: 24px;"></i>
+                    </div>
+                    <h4>Ad-Free Experience</h4>
+                    <p>Enjoy uninterrupted music without commercials</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-star" style="color: var(--accent-primary); font-size: 24px;"></i>
+                    </div>
+                    <h4>Exclusive Content</h4>
+                    <p>Access to premium-only tracks, concerts, and podcasts</p>
+                </div>
+            </div>
+            <a href="#" class="cta-button">Try Premium Free for 30 Days</a>
+        </div>
+    </main>
+    
+    <!-- Player Bar -->
+    <div class="player-bar">
+        <div class="now-playing">
+            <img src="https://source.unsplash.com/random/100x100/?music,cover16" alt="Now Playing">
+            <div class="song-info">
+                <h4>Blinding Lights</h4>
+                <p>The Weeknd</p>
+            </div>
+            <i class="fas fa-heart" style="color: var(--accent-primary); cursor: pointer;"></i>
+        </div>
+        
+        <div class="player-controls">
+            <div class="control-buttons">
+                <button><i class="fas fa-random"></i></button>
+                <button><i class="fas fa-step-backward"></i></button>
+                <button class="play-pause"><i class="fas fa-play"></i></button>
+                <button><i class="fas fa-step-forward"></i></button>
+                <button><i class="fas fa-redo"></i></button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="time-display">
+                <span>1:23</span>
+                <span>3:45</span>
+            </div>
+        </div>
+        
+        <div class="player-options">
+            <div class="volume-control">
+                <i class="fas fa-volume-up" style="color: var(--text-primary);"></i>
+                <div class="volume-slider">
+                    <div class="volume-progress"></div>
+                </div>
+            </div>
+            <span class="quality-badge">HI-FI</span>
+            <i class="fas fa-list" style="color: var(--text-primary); cursor: pointer;"></i>
+        </div>
+    </div>
+</body>
+</html>

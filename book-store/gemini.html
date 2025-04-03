@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Literary Nexus</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* style.css */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: white;
+            color: #6a11cb;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .featured-section,
+        .genres-section,
+        .new-arrivals-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .featured-section h2,
+        .genres-section h2,
+        .new-arrivals-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .book-grid
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">The Literary Nexus</div>
+                <ul class="nav-links">
+                    <li><a href="#featured">Featured</a></li>
+                    <li><a href="#genres">Genres</a></li>
+                    <li><a href="#new-arrivals">New Arrivals</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hero">
+                <h1>Dive into Worlds Unknown.</h1>
+                <p>Explore a curated collection of captivating stories and knowledge.</p>
+                <a href="#featured" class="btn">Discover Now</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="featured" class="featured-section">
+        <div class="container">
+            <h2>Featured Books</h2>
+            <div class="book-grid">
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=Book+1" alt="Book 1">
+                    <h3>The Silent Echoes</h3>
+                    <p class="author">By Anya Sharma</p>
+                    <p class="price">$19.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=Book+2" alt="Book 2">
+                    <h3>Cosmic Odyssey</h3>
+                    <p class="author">By Ben Carter</p>
+                    <p class="price">$24.50</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=Book+3" alt="Book 3">
+                    <h3>Whispers of the Past</h3>
+                    <p class="author">By Clara Lee</p>
+                    <p class="price">$17.75</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=Book+4" alt="Book 4">
+                    <h3>The Hidden Realms</h3>
+                    <p class="author">David Moore</p>
+                    <p class="price">$21.00</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="genres" class="genres-section">
+        <div class="container">
+            <h2>Explore Genres</h2>
+            <div class="genre-grid">
+                <div class="genre-item">
+                    <h3>Fiction</h3>
+                </div>
+                <div class="genre-item">
+                    <h3>Science Fiction</h3>
+                </div>
+                <div class="genre-item">
+                    <h3>Mystery</h3>
+                </div>
+                <div class="genre-item">
+                    <h3>History</h3>
+                </div>
+                <div class="genre-item">
+                    <h3>Biography</h3>
+                </div>
+                <div class="genre-item">
+                    <h3>Poetry</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="new-arrivals" class="new-arrivals-section">
+        <div class="container">
+            <h2>New Arrivals</h2>
+            <div class="book-grid">
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=New+Book+1" alt="New Book 1">
+                    <h3>The Quantum Leap</h3>
+                    <p class="author">By Emily White</p>
+                    <p class="price">$26.00</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=New+Book+2" alt="New Book 2">
+                    <h3>City of Dreams</h3>
+                    <p class="author">By Frank Green</p>
+                    <p class="price">$22.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=New+Book+3" alt="New Book 3">
+                    <h3>Echoes of Tomorrow</h3>
+                    <p class="author">By Grace Black</p>
+                    <p class="price">$28.50</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="https://via.placeholder.com/200x300?text=New+Book+4" alt="New Book 4">
+                    <h3>The Lost Star</h3>
+                    <p class="author">Henry Yellow</p>
+                    <p class="price">$30.00</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2024 The Literary Nexus. All rights reserved.</p>
+            <p>Contact us: info@literarynexus.com</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

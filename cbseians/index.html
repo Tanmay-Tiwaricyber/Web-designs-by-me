@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSEians Elite | Premium Study Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #A29BFE;
+            --accent: #00CEC9;
+            --dark: #0F0E15;
+            --darker: #0A0910;
+            --light: #F1F2F6;
+            --gray: #636E72;
+            --success: #00B894;
+            --purple: #6C5CE7;
+            --pink: #FD79A8;
+            --gold: #FDCB6E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--light);
+            background-color: var(--darker);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Animated Background */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            opacity: 0.15;
+            filter: blur(40px);
+            animation: float 25s infinite linear;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(15, 14, 21, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        header.scrolled {
+            background: rgba(10, 9, 16, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 0;
+            transition: all 0.5s ease;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+            transition: all 0.5s ease;
+        }
+        
+        .logo-text h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.5s ease;
+        }
+        
+        .logo-text p {
+            margin: 0;
+            opacity: 0.7;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            transition: all 0.5s ease;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .nav-links a:hover {
+            opacity: 1;
+            color: white;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            color: white;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.6);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 15rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+            color: var(--secondary);
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 5rem;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: white;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .stat-item h3::after {
+            content: '+';
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .stat-item p {
+            margin: 10px 0 0;
+            font-size: 1rem;
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(60px);
+            animation: floatElement 25s infinite linear;
+        }
+        
+        .element-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+        
+        .element-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--pink);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 5s;
+        }
+        
+        .element-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            top: 30%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 8rem 0;
+            position: relative;
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(0, 206, 201, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(108, 92, 231, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
+            transition: all 0.5s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(15deg) scale(1.1);
+            background: linear-gradient(135deg, var(--pink), var(--accent));
+        }
+        
+        .feature-card h3 {
+            margin: 0 0 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: var(--secondary);
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 8rem 0;
+            position: relative;
+            background: var(--darker);
+            overflow: hidden;
+        }
+        
+        .categories::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .category-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(0, 206, 201, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(108, 92, 231, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        
+        .category-card:hover::before {
+            opacity: 1;
+        }
+        
+        .category-img {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            opacity: 0.9;
+            transition: all 0.5s ease;
+        }
+        
+        .category-card:hover .category-img::before {
+            background: linear-gradient(135deg, var(--pink), var(--accent));
+        }
+        
+        .category-img i {
+            position: relative;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        
+        .category-card:hover .category-img i {
+            transform: scale(1.2);
+        }
+        
+        .category-content {
+            padding: 30px;
+        }
+        
+        .category-content h3 {
+            margin: 0 0 15px;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .category-content p {
+            color: var(--secondary);
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Bot Section */
+        .bot-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--darker), #0C0B14);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .bot-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .bot-container {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .bot-image {
+            flex: 1;
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .bot-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .bot-content {
+            flex: 1;
+        }
+        
+        .bot-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .bot-content p {
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+        
+        .bot-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .bot-feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .bot-feature:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .bot-feature i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        
+        .bot-btn {
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            color: white;
+            padding: 18px 35px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.05rem;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .bot-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.6);
+            background: linear-gradient(135deg, var(--pink), var(--accent));
+        }
+        
+        .bot-btn i {
+            font-size: 1.3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0A0910;
+            color: white;
+            padding: 6rem 0 2rem;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 600;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-column p {
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: inline-block;
+            opacity: 0.8;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes floatElement {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(100px, 100px) rotate(180deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h2 {
+                font-size: 3rem;
+            }
+            
+            .bot-container {
+                gap: 50px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero {
+                padding: 12rem 0 6rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .bot-container {
+                flex-direction: column;
+            }
+            
+            .bot-image, .bot-content {
+                flex: none;
+                width: 100%;
+            }
+            
+            .bot-image {
+                margin-bottom: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 1rem 0;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .stat-item:not(:last-child)::after {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .bot-features {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-particles">
+        <div class="particle" style="width: 300px; height: 300px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 400px; height: 400px; bottom: 15%; right: 10%; animation-delay: 5s;"></div>
+        <div class="particle" style="width: 250px; height: 250px; top: 40%; right: 20%; animation-delay: 10s;"></div>
+        <div class="particle" style="width: 350px; height: 350px; bottom: 25%; left: 15%; animation-delay: 15s;"></div>
+    </div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>CBSEians</h1>
+                        <p>Elite Study Resources</p>
+                    </div>
+                </div>
+                
+                <nav class="nav-links">
+                    <!-- <a href="#features">Features</a> -->
+                    <!-- <a href="books.html">Books</a> -->
+                    <!-- <a href="courses.html">Courses</a> -->
+                    <!-- <a href="#community">Community</a> -->
+                </nav>
+                
+                <div class="cta-buttons">
+                    <a href="https://t.me/cbseianss" class="btn btn-primary">
+                        <i class="fab fa-telegram"></i> Join Group
+                    </a>
+                    <a href="https://t.me/cbseianss" class="btn btn-outline">
+                        <i class="fas fa-robot"></i> Try Bot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element element-1"></div>
+            <div class="floating-element element-2"></div>
+            <div class="floating-element element-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h2>Unlock Premium Academic Excellence</h2>
+                <p>Access 1700+ elite PDF resources, connect with other students, and leverage our AI-powered bot to dominate your exams.</p>
+                
+                <div class="hero-buttons">
+                    <a href="https://t.me/cbseianss" class="btn btn-primary">
+                        <i class="fas fa-gem"></i> Explore Resources
+                    </a>
+                    <a href="error.html" class="btn btn-outline">
+                        <i class="fas fa-crown"></i> Join Elite
+                    </a>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>1700</h3>
+                        <p>Premium PDFs</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>15</h3>
+                        <p>Categories</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24</h3>
+                        <p>Bot Features</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Elite Features</h2>
+                <p>Premium tools and resources designed to give you the competitive edge in your academic journey.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Premium Study Material</h3>
+                    <p>Access our exclusive collection of 1700+ high-quality PDF files covering all subjects and competitive exams.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Search Bot</h3>
+                    <p>Our intelligent Telegram bot understands natural language to instantly find the exact study material you need.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Elite Community</h3>
+                    <p>Connect with students in our discussion channels for peer learning and expert guidance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Organized Resources</h3>
+                    <p>All materials are meticulously categorized by class, subject, and exam type for effortless navigation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Weekly Updates</h3>
+                    <p>We add 50+ new premium resources weekly including latest PYQs and expert-curated modules.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>VIP Support</h3>
+                    <p>Get priority assistance from our team of admins for any academic queries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Premium Categories</h2>
+                <p>Explore our extensive collection of elite study materials organized into specialized categories.</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Class 11th</h3>
+                        <p>Complete notes, sample papers, and reference materials for all Class 11 subjects</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>JEE Notes/Module</h3>
+                        <p>Detailed modules, formula sheets, and concept maps for JEE Main & Advanced</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>NEET</h3>
+                        <p>Specialized biology, chemistry, and physics materials for NEET aspirants</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>JEE-Main PYQS</h3>
+                        <p>Last 10 years JEE Main question papers with chapter-wise solutions</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>CUET</h3>
+                        <p>Complete preparation package for Central Universities Entrance Test</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>CS-12th</h3>
+                        <p>Computer Science projects, notes, and practical files for Class 12</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>NCERT Books</h3>
+                        <p>Digital versions of all NCERT textbooks with highlighted important points</p>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-img">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>IP Sample Paper</h3>
+                        <p>Informatics Practices sample papers with marking schemes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bot Section -->
+    <section class="bot-section" id="bot">
+        <div class="container">
+            <div class="bot-container">
+                <div class="bot-image">
+                    <img src="BOT.png" alt="Study Bot">
+                </div>
+                <div class="bot-content">
+                    <h2>Your 24/7 Study Assistant</h2>
+                    <p>Our AI-powered Telegram bot revolutionizes how you access study materials. With natural language processing, it understands exactly what you need and delivers the perfect resources instantly.</p>
+                    
+                    <div class="bot-features">
+                        <div class="bot-feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Instant Search</span>
+                        </div>
+                        <div class="bot-feature">
+                            <i class="fas fa-filter"></i>
+                            <span>Smart Filters</span>
+                        </div>
+                        <div class="bot-feature">
+                            <i class="fas fa-tags"></i>
+                            <span>Category Search</span>
+                        </div>
+                        <div class="bot-feature">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Available</span>
+                        </div>
+                        <div class="bot-feature">
+                            <i class="fas fa-bookmark"></i>
+                            <span>Save Favorites</span>
+                        </div>
+                        <div class="bot-feature">
+                            <i class="fas fa-bell"></i>
+                            <span>Update Alerts</span>
+                        </div>
+                    </div>
+                    
+                    <button class="bot-btn">
+                        <i class="fab fa-telegram"></i> Launch Study Bot
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CBSEians Elite</h3>
+                    <p>The premier destination for elite study materials and academic excellence resources for competitive students.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#bot">Study Bot</a></li>
+                        <li><a href="#">Request Material</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Class 11th</a></li>
+                        <li><a href="#">Class 12th</a></li>
+                        <li><a href="#">JEE Modules</a></li>
+                        <li><a href="#">NEET Materials</a></li>
+                        <li><a href="#">NCERT Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Admins</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Report Issue</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 CBSEians Elite. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--pink);"></i> for top students</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .category-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialize elements with opacity 0 for animation
+        document.querySelectorAll('.feature-card, .category-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.bg-particles');
+            const particleCount = 8;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 100px and 500px
+                const size = Math.random() * 400 + 100;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                
+                // Random color
+                const colors = ['var(--primary)', 'var(--pink)', 'var(--accent)', 'var(--purple)'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = randomColor;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+    </script>
+</body>
+</html>

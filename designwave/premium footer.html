@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Footer Design | Designwave</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --light: #F9FAFB;
+            --dark: #111827;
+            --darker: #0F172A;
+            --gray: #E5E7EB;
+            --dark-gray: #374151;
+            --transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.3);
+            --glass: rgba(15, 23, 42, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===================== */
+        /* LUXURY FOOTER DESIGN */
+        /* ===================== */
+        .luxury-footer {
+            position: relative;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            padding: 8rem 0 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .luxury-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.03;
+            z-index: -1;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        /* Brand Column */
+        .footer-brand {
+            position: relative;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-right: 1.25rem;
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            transition: var(--transition);
+        }
+
+        .footer-logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .footer-logo:hover .logo-text {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+        }
+
+        .footer-about {
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .footer-about::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+            border-color: transparent;
+        }
+
+        /* Navigation Columns */
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            position: relative;
+        }
+
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+            padding-left: 10px;
+        }
+
+        .footer-links a:hover::before {
+            width: 30px;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Contact Column */
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .footer-contact i {
+            margin-right: 1.25rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Newsletter Column */
+        .newsletter-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            line-height: 1.4;
+        }
+
+        .newsletter-title span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .newsletter-form {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .newsletter-btn {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            bottom: 8px;
+            width: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            transform: translateX(5px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .payment-method {
+            width: 60px;
+            height: 36px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            color: var(--light);
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 3rem;
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-legal a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--light);
+        }
+
+        .footer-legal a:hover::after {
+            width: 100%;
+        }
+
+        .footer-made {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .footer-made i {
+            color: #ef4444;
+            font-size: 1rem;
+        }
+
+        /* Decorative Elements */
+        .footer-decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            width: 200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .decoration-2 {
+            bottom: 20%;
+            right: 5%;
+            width: 150px;
+            animation: float 10s ease-in-out infinite 2s;
+        }
+
+        .decoration-3 {
+            bottom: 10%;
+            left: 15%;
+            width: 120px;
+            animation: float 12s ease-in-out infinite 1s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-grid {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .luxury-footer {
+                padding: 6rem 0 3rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem 2rem;
+            }
+            
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+            
+            .footer-about {
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .luxury-footer {
+                padding: 5rem 0 2rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Luxury Footer -->
+    <footer class="luxury-footer">
+        <!-- Decorative elements -->
+        <svg class="footer-decoration decoration-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--primary)" d="M45.5,-53.4C58.5,-41.6,68.3,-26.3,70.9,-9.4C73.5,7.5,68.9,25.9,56.2,38.7C43.5,51.5,22.7,58.7,2.7,56.5C-17.3,54.3,-34.6,42.7,-46.1,28.7C-57.6,14.7,-63.3,-1.7,-59.8,-16.3C-56.3,-30.9,-43.6,-43.7,-29.2,-55.1C-14.8,-66.5,1.2,-76.5,16.3,-73.5C31.4,-70.5,45.5,-54.5,45.5,-53.4Z" transform="translate(100 100)" />
+        </svg>
+        
+        <svg class="footer-decoration decoration-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--secondary)" d="M48.8,-53.4C61.8,-41.3,70.1,-24.7,72.8,-6.8C75.5,11.1,72.6,30.3,61.2,43.9C49.8,57.5,29.9,65.5,9.3,57.6C-11.4,49.7,-32.8,25.9,-43.5,1.1C-54.2,-23.7,-54.2,-49.5,-40.8,-61.6C-27.3,-73.7,-0.5,-72.1,18.6,-63.9C37.6,-55.7,48.8,-40.9,48.8,-53.4Z" transform="translate(100 100)" />
+        </svg>
+        
+        <svg class="footer-decoration decoration-3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--accent)" d="M39.6,-50.6C52.3,-42.1,64,-32.4,68.4,-19.9C72.8,-7.5,69.9,7.8,63.3,21.3C56.7,34.8,46.4,46.6,33.7,55.1C21,63.6,5.9,68.8,-9.2,67.1C-24.3,65.4,-39.5,56.8,-50.8,44.6C-62.1,32.4,-69.5,16.7,-70.8,-0.6C-72.1,-17.9,-67.3,-35.8,-55.9,-48.8C-44.5,-61.8,-26.6,-69.9,-9.3,-63.9C8,-57.9,16,-37.8,39.6,-50.6Z" transform="translate(100 100)" />
+        </svg>
+        
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <div class="logo-icon">DW</div>
+                        <div class="logo-text">Designwave</div>
+                    </a>
+                    <p class="footer-about">
+                        We transform visions into exceptional digital experiences. Our award-winning designs blend aesthetics with functionality to deliver measurable business results for global clients.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        <a href="https://www.instagram.com/design_wave.io?igsh=YjhybXdpZGl2cDAw" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links Column -->
+                <div class="footer-nav">
+                    <h3 class="footer-heading">Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services Column -->
+                <div class="footer-nav">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Brand Strategy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Web Design</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Motion Design</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Design Systems</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Column -->
+                <div class="footer-nav">
+                    <h3 class="footer-heading">Contact</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> designwave528@gmail.com</p>
+                        <p><i class="fas fa-phone-alt"></i> +91 9369863360</p>
+                        <p><i class="fab fa-whatsapp"></i> +91 9369863360</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</p>
+                    </div>
+                </div>
+                
+                <!-- Newsletter Column -->
+                <div class="footer-nav">
+                    <h3 class="newsletter-title">Join our <span>exclusive</span> design newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <div class="payment-methods">
+                        <div class="payment-method"><i class="fab fa-cc-visa"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-mastercard"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-amex"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-paypal"></i></div>
+                        <div class="payment-method"><i class="fab fa-cc-stripe"></i></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2024 Designwave. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">GDPR Compliance</a>
+                </div>
+                <p class="footer-made">
+                    Crafted with <i class="fas fa-heart"></i> by Designwave Team
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animate elements on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const footerColumns = document.querySelectorAll('.footer-nav');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            footerColumns.forEach(column => {
+                column.style.opacity = '0';
+                column.style.transform = 'translateY(30px)';
+                column.style.transition = 'var(--transition)';
+                observer.observe(column);
+            });
+            
+            // Add hover effect to payment methods
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('mouseenter', () => {
+                    method.style.transform = 'translateY(-5px)';
+                    method.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                });
+                method.addEventListener('mouseleave', () => {
+                    method.style.transform = 'translateY(0)';
+                    method.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

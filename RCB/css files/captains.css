@@ -1,0 +1,336 @@
+
+        :root {
+            --rcb-red: #EC1C24;
+            --rcb-gold: #FFD700;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #1a1a1a;
+            --text-light: #f0f0f0;
+            --text-white: #ffffff;
+        }
+
+        /* * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        } */
+
+        /* Captains Section */
+        .captains-section {
+            padding: 8rem 2rem;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--rcb-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--rcb-red), var(--rcb-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        /* Captains Grid */
+        .captains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .captain-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(236, 28, 36, 0.1);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .captain-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .captain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(236, 28, 36, 0.3);
+            border-color: rgba(236, 28, 36, 0.3);
+        }
+
+        .captain-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top;
+            border-bottom: 3px solid var(--rcb-red);
+            transition: all 0.5s ease;
+            filter: grayscale(20%);
+        }
+
+        .captain-card:hover .captain-image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .captain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, transparent 50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+
+        .captain-tenure {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--rcb-gold);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .captain-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text-white);
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .captain-role {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .captain-content {
+            padding: 2rem;
+        }
+
+        .captain-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--rcb-red);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .captain-highlights {
+            margin-top: 1.5rem;
+        }
+
+        .highlight-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--rcb-gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .highlight-title i {
+            font-size: 1.2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight-icon {
+            color: var(--rcb-red);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .highlight-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .view-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            color: var(--rcb-red);
+            text-decoration: none;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .view-button:hover {
+            color: var(--rcb-gold);
+        }
+
+        .view-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Decorative Elements */
+        .section-decoration {
+            position: absolute;
+            opacity: 0.03;
+            z-index: 0;
+            font-size: 20rem;
+            color: var(--rcb-red);
+        }
+
+        .decoration-1 {
+            top: -50px;
+            left: -100px;
+        }
+
+        .decoration-2 {
+            bottom: -100px;
+            right: -100px;
+            color: var(--rcb-gold);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 3.5rem;
+            }
+
+            .captains-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .captain-image {
+                height: 300px;
+            }
+
+            .captain-overlay {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .captains-section {
+                padding: 5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
+            .captain-name {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .captains-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-decoration {
+                font-size: 15rem;
+            }
+        }

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCB History Timeline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rcb-red: #EC1C24;
+            --rcb-gold: #FFD700;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #1a1a1a;
+            --text-light: #f0f0f0;
+            --text-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 8rem 2rem;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--rcb-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--rcb-red), var(--rcb-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        /* Interactive Timeline */
+        .timeline-container {
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                          transparent, 
+                          var(--rcb-red), 
+                          var(--rcb-gold), 
+                          transparent);
+            z-index: 1;
+        }
+
+        .timeline-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            max-width: 500px;
+            position: relative;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(236, 28, 36, 0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(236, 28, 36, 0.2);
+            border-color: rgba(236, 28, 36, 0.3);
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: -25px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--rcb-gold);
+            background: var(--darker-bg);
+            padding: 0 1rem;
+            border-radius: 30px;
+            border: 2px solid var(--rcb-red);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -25px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -25px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rcb-red), var(--rcb-gold));
+            border: 4px solid var(--darker-bg);
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -10px;
+        }
+
+        .timeline-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .timeline-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(236, 28, 36, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-image {
+            border-color: var(--rcb-red);
+            transform: scale(1.02);
+        }
+
+        .timeline-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: rgba(240, 240, 240, 0.9);
+        }
+
+        .timeline-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-bubble {
+            background: rgba(236, 28, 36, 0.1);
+            border: 1px solid rgba(236, 28, 36, 0.3);
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--rcb-gold);
+        }
+
+        .timeline-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            color: var(--rcb-red);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-button:hover {
+            color: var(--rcb-gold);
+        }
+
+        .timeline-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Decorative Elements */
+        .timeline-decoration {
+            position: absolute;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 10%;
+            font-size: 15rem;
+            color: var(--rcb-red);
+        }
+
+        .decoration-2 {
+            bottom: 10%;
+            right: 10%;
+            font-size: 12rem;
+            color: var(--rcb-gold);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                justify-content: center;
+                padding: 0;
+                text-align: center;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-year,
+            .timeline-item:nth-child(even) .timeline-year {
+                left: 50%;
+                transform: translateX(-50%);
+                top: -20px;
+                right: auto;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-marker,
+            .timeline-item:nth-child(even) .timeline-marker {
+                left: 50%;
+                transform: translate(-50%, -50%);
+                top: -40px;
+            }
+
+            .timeline-line {
+                left: 40px;
+            }
+
+            .section-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .timeline-section {
+                padding: 5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+            }
+
+            .timeline-title {
+                font-size: 1.8rem;
+            }
+
+            .timeline-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- History & Timeline Section -->
+    <section class="timeline-section" id="history">
+        <!-- Decorative Elements -->
+        <div class="timeline-decoration decoration-1">
+            <i class="fas fa-trophy"></i>
+        </div>
+        <div class="timeline-decoration decoration-2">
+            <i class="fas fa-crown"></i>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <p class="section-subtitle">The Journey</p>
+            <h2 class="section-title">RCB <span>Timeline</span></h2>
+            <p class="section-description">
+                Relive the iconic moments that shaped Royal Challengers Bangalore from its inception to becoming one of the most passionate franchises in cricket history.
+            </p>
+        </div>
+
+        <!-- Interactive Timeline -->
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-items">
+                <!-- 2008 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2008</div>
+                        <div class="timeline-marker"></div>
+                        <h3 class="timeline-title">The Birth of RCB</h3>
+                        <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="RCB 2008" class="timeline-image">
+                        <p class="timeline-description">
+                            Royal Challengers Bangalore was established as one of the original eight franchises of the Indian Premier League. Rahul Dravid was named the first captain, leading a squad that included Anil Kumble and Jacques Kallis.
+                        </p>
+                        <div class="timeline-stats">
+                            <span class="stat-bubble">Captain: Rahul Dravid</span>
+                            <span class="stat-bubble">Finish: 7th Position</span>
+                        </div>
+                        <a href="#" class="timeline-button">
+                            View Season Highlights <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2009 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2009</div>
+                        <div class="timeline-marker"></div>
+                        <h3 class="timeline-title">First Final Appearance</h3>
+                        <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="RCB 2009" class="timeline-image">
+                        <p class="timeline-description">
+                            Under new captain Kevin Pietersen and later Anil Kumble, RCB reached their first IPL final. The team's bowling attack, led by Kumble's 21 wickets, took them to the championship match against Deccan Chargers.
+                        </p>
+                        <div class="timeline-stats">
+                            <span class="stat-bubble">Captain: Anil Kumble</span>
+                            <span class="stat-bubble">Finish: Runners-up</span>
+                            <span class="stat-bubble">Kumble: 21 Wickets</span>
+                        </div>
+                        <a href="#" class="timeline-button">
+                            Relive the Final <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2011 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2011</div>
+                        <div class="timeline-marker"></div>
+                        <h3 class="timeline-title">The Gayle Storm Arrives</h3>
+                        <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Chris Gayle" class="timeline-image">
+                        <p class="timeline-description">
+                            Chris Gayle joined RCB as a replacement player and created history with his explosive batting. He scored 608 runs in just 12 matches at a staggering strike rate of 183, including two centuries.
+                        </p>
+                        <div class="timeline-stats">
+                            <span class="stat-bubble">Captain: Daniel Vettori</span>
+                            <span class="stat-bubble">Gayle: 608 Runs</span>
+                            <span class="stat-bubble">SR: 183.13</span>
+                        </div>
+                        <a href="#" class="timeline-button">
+                            Watch Gayle's 175* <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2013 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013</div>
+                        <div class="timeline-marker"></div>
+                        <h3 class="timeline-title">Kohli Takes Charge</h3>
+                        <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Virat Kohli captain" class="timeline-image">
+                        <p class="timeline-description">
+                            Virat Kohli was appointed as the full-time captain of RCB, beginning a new era for the franchise. His aggressive leadership and batting would make him the face of RCB for nearly a decade.
+                        </p>
+                        <div class="timeline-stats">
+                            <span class="stat-bubble">New Captain: Virat Kohli</span>
+                            <span class="stat-bubble">ABD Joined</span>
+                            <span class="stat-bubble">Finish: 5th</span>
+                        </div>
+                        <a href="#" class="timeline-button">
+                            Kohli's Leadership <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2016 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2016</div>
+                        <div class="timeline-marker"></div>
+                        <h3 class="timeline-title">Record-Breaking Season</h3>
+                        <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="RCB 2016" class="timeline-image">
+                        <p class="timeline-description">
+                            Virat Kohli scored an unprecedented 4 centuries in a single season (973 runs total) as RCB reached the finals. The team posted the highest ever IPL total of 263/5 against Pune Warriors.
+                        </p>
+                        <div class="timeline-stats">
+                            <span class="stat-bubble">Kohli: 973 Runs</span>
+                            <span class="stat-bubble">4 Centuries</span>
+                            <span class="stat-bubble">Finish: Runners-up</span>
+                        </div>
+                        <a href="#" class="timeline-button">
+                            See Records <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2022 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-marker"></div>
+                        <h3 class="timeline-title">Women's Team Launched</h3>
+                        <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="RCB Women" class="timeline-image">
+                        <p class="timeline-description">
+                            RCB expanded to include a women's team in the inaugural Women's Premier League, with Smriti Mandhana as captain. The team wore the same red and gold colors, carrying forward the RCB legacy.
+                        </p>
+                        <div class="timeline-stats">
+                            <span class="stat-bubble">Captain: Smriti Mandhana</span>
+                            <span class="stat-bubble">First WPL Season</span>
+                        </div>
+                        <a href="#" class="timeline-button">
+                            Meet the Women's Team <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-marker"></div>
+                        <h3 class="timeline-title">The Faf Era Continues</h3>
+                        <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Faf du Plessis" class="timeline-image">
+                        <p class="timeline-description">
+                            Under Faf du Plessis' leadership, RCB continues to build a balanced squad with young Indian talent and international stars. The team looks to finally claim that elusive IPL trophy.
+                        </p>
+                        <div class="timeline-stats">
+                            <span class="stat-bubble">Captain: Faf du Plessis</span>
+                            <span class="stat-bubble">Emerging: Rajat Patidar</span>
+                        </div>
+                        <a href="#" class="timeline-button">
+                            Current Squad <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animate timeline items when they come into view
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // Add hover sound effect to timeline buttons
+        const timelineButtons = document.querySelectorAll('.timeline-button');
+        
+        timelineButtons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                // Would play a subtle sound effect in production
+                console.log('Hover sound effect would play here');
+            });
+        });
+    </script>
+</body>
+</html>

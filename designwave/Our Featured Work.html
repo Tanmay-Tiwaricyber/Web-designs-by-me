@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designwave | Premium Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --light: #F9FAFB;
+            --dark: #111827;
+            --darker: #0F172A;
+            --gray: #E5E7EB;
+            --dark-gray: #374151;
+            --transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.3);
+            --glass: rgba(15, 23, 42, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary);
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ======================= */
+        /* PREMIUM PORTFOLIO SECTION */
+        /* ======================= */
+        .portfolio {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .portfolio-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Portfolio Filter */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: var(--gray);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            border-radius: 50px;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            color: var(--light);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .filter-btn.active::after, .filter-btn:hover::after {
+            width: 40px;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            aspect-ratio: 4/3;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.9));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .portfolio-category {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .portfolio-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--light);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .portfolio-link i {
+            margin-left: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-10px);
+        }
+
+        .portfolio-item:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item:hover .portfolio-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .portfolio-link:hover {
+            color: var(--accent);
+        }
+
+        .portfolio-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* View All Button */
+        .portfolio-more {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .view-all-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.5);
+        }
+
+        .view-all-btn i {
+            transition: var(--transition);
+        }
+
+        .view-all-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Decorative Elements */
+        .portfolio-decoration {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            width: 150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .decoration-2 {
+            bottom: 10%;
+            right: 5%;
+            width: 120px;
+            animation: float 10s ease-in-out infinite 2s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .section {
+                padding: 6rem 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .portfolio-content {
+                padding: 2rem;
+            }
+            
+            .portfolio-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 5rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Portfolio Section -->
+    <section class="section portfolio">
+        <!-- Decorative elements -->
+        <svg class="portfolio-decoration decoration-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--primary)" d="M45.5,-53.4C58.5,-41.6,68.3,-26.3,70.9,-9.4C73.5,7.5,68.9,25.9,56.2,38.7C43.5,51.5,22.7,58.7,2.7,56.5C-17.3,54.3,-34.6,42.7,-46.1,28.7C-57.6,14.7,-63.3,-1.7,-59.8,-16.3C-56.3,-30.9,-43.6,-43.7,-29.2,-55.1C-14.8,-66.5,1.2,-76.5,16.3,-73.5C31.4,-70.5,45.5,-54.5,45.5,-53.4Z" transform="translate(100 100)" />
+        </svg>
+        
+        <svg class="portfolio-decoration decoration-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--secondary)" d="M48.8,-53.4C61.8,-41.3,70.1,-24.7,72.8,-6.8C75.5,11.1,72.6,30.3,61.2,43.9C49.8,57.5,29.9,65.5,9.3,57.6C-11.4,49.7,-32.8,25.9,-43.5,1.1C-54.2,-23.7,-54.2,-49.5,-40.8,-61.6C-27.3,-73.7,-0.5,-72.1,18.6,-63.9C37.6,-55.7,48.8,-40.9,48.8,-53.4Z" transform="translate(100 100)" />
+        </svg>
+        
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">
+                    <i class="fas fa-star me-2"></i>Our Masterpieces
+                </span>
+                <h2 class="section-title">Featured Design Projects</h2>
+                <p class="section-description">
+                    Explore our curated collection of premium design work that has transformed brands and delighted users worldwide.
+                </p>
+            </div>
+            
+            <div class="portfolio-container">
+                <!-- Portfolio Filter -->
+                <div class="portfolio-filter">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                    <button class="filter-btn" data-filter="web">Web Design</button>
+                    <button class="filter-btn" data-filter="app">App Design</button>
+                    <button class="filter-btn" data-filter="motion">Motion</button>
+                </div>
+                
+                <!-- Portfolio Grid -->
+                <div class="portfolio-grid">
+                    <!-- Project 1 -->
+                    <div class="portfolio-item" data-category="branding">
+                        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=1974&auto=format&fit=crop" alt="NovaTech Branding" class="portfolio-img">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Brand Identity</span>
+                            <h3 class="portfolio-title">NovaTech Corporate Rebrand</h3>
+                            <a href="#" class="portfolio-link">
+                                View Case Study
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="portfolio-item" data-category="web">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1964&auto=format&fit=crop" alt="Lumina E-commerce" class="portfolio-img">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Web Design</span>
+                            <h3 class="portfolio-title">Lumina E-commerce Platform</h3>
+                            <a href="#" class="portfolio-link">
+                                View Case Study
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="portfolio-item" data-category="app">
+                        <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=2070&auto=format&fit=crop" alt="FitnessPro App" class="portfolio-img">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">App Design</span>
+                            <h3 class="portfolio-title">FitnessPro Mobile Experience</h3>
+                            <a href="#" class="portfolio-link">
+                                View Case Study
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="portfolio-item" data-category="branding">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974&auto=format&fit=crop" alt="UrbanBrew Branding" class="portfolio-img">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Brand Identity</span>
+                            <h3 class="portfolio-title">UrbanBrew Coffee Roasters</h3>
+                            <a href="#" class="portfolio-link">
+                                View Case Study
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 5 -->
+                    <div class="portfolio-item" data-category="motion">
+                        <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?q=80&w=2070&auto=format&fit=crop" alt="Aurora Motion" class="portfolio-img">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Motion Design</span>
+                            <h3 class="portfolio-title">Aurora Motion Graphics</h3>
+                            <a href="#" class="portfolio-link">
+                                View Case Study
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 6 -->
+                    <div class="portfolio-item" data-category="web">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop" alt="Portfolio Platform" class="portfolio-img">
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Web Design</span>
+                            <h3 class="portfolio-title">Creative Portfolio Platform</h3>
+                            <a href="#" class="portfolio-link">
+                                View Case Study
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View All Button -->
+                <div class="portfolio-more">
+                    <button class="view-all-btn">
+                        Explore Full Portfolio
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Portfolio Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Animate items on scroll
+        const animateItems = () => {
+            const items = document.querySelectorAll('.portfolio-item');
+            
+            items.forEach((item, index) => {
+                const itemPosition = item.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (itemPosition < screenPosition) {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 150);
+                }
+            });
+        };
+        
+        // Initialize animation
+        window.addEventListener('load', () => {
+            const items = document.querySelectorAll('.portfolio-item');
+            items.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'var(--transition)';
+            });
+            
+            animateItems();
+        });
+        
+        window.addEventListener('scroll', animateItems);
+    </script>
+</body>
+</html>

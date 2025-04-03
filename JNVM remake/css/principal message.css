@@ -1,0 +1,271 @@
+:root {
+    --bg-dark: #f8fafc;
+    --surface: #ffffff;
+    --surface-light: #f1f5f9;
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --accent: #d97706;
+    --accent-dark: #b45309;
+    --text-primary: #1e293b;       /* Dark slate for primary text */
+    --text-secondary: #64748b;     /* Slate for secondary text */
+    --text-nav: #334155;           /* Premium slate for navbar text */
+    --text-nav-hover: #1e40af;     /* Deep blue for navbar hover */
+    --glass: rgba(255, 255, 255, 0.97);
+    --transition: all 0.3s ease;
+}
+
+
+.content-container {
+    display: flex;
+    gap: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    /* max-width: 1200px; */
+}
+
+/* Principal's Message Card */
+.principal-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    width: 65%;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* Notices Section */
+.notices-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    width: 35%;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(58, 130, 246, 0.3);
+}
+
+.notices-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(58, 130, 246, 0.3);
+}
+
+.notices-header h2 {
+    color: var(--notice-accent);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.notice-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.notice-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.notice-date {
+    color: var(--gold-accent);
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notice-date i {
+    font-size: 12px;
+}
+
+.notice-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--notice-accent);
+}
+
+.notice-content {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.urgent {
+    position: relative;
+    padding-left: 15px;
+}
+
+.urgent::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 80%;
+    width: 4px;
+    background-color: #ff4757;
+    border-radius: 2px;
+}
+
+/* Shared Card Styles */
+.letterhead {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.letterhead h1 {
+    color: var(--gold-accent);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.letterhead p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.letter-date {
+    text-align: right;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.salutation {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.message-content {
+    font-size: 16px;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.message-content p {
+    margin-bottom: 15px;
+    text-indent: 30px;
+}
+
+.closing {
+    margin-top: 40px;
+}
+
+.signature-block {
+    text-align: right;
+    margin-top: 50px;
+}
+
+.signature {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 24px;
+    color: var(--gold-accent);
+    margin-top: 10px;
+}
+
+.principal-info {
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    padding-top: 10px;
+    margin-top: 5px;
+}
+
+.principal-name {
+    font-weight: bold;
+    color: var(--gold-accent);
+    font-size: 18px;
+}
+
+.principal-title {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.principal-photo {
+    width: 100px;
+    height: 125px;
+    object-fit: cover;
+    border: 1px solid var(--gold-accent);
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    shape-outside: margin-box;
+}
+
+.school-logo {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+    .content-container {
+        flex-direction: column;
+    }
+    
+    .principal-card,
+    .notices-card {
+        width: 100%;
+    }
+    
+    .notices-card {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .principal-card,
+    .notices-card {
+        padding: 25px;
+    }
+    
+    .letterhead h1 {
+        font-size: 20px;
+    }
+    
+    .notices-header h2 {
+        font-size: 20px;
+    }
+    
+    .principal-photo {
+        width: 80px;
+        height: 100px;
+        float: none;
+        display: block;
+        margin: 0 auto 20px auto;
+    }
+    
+    .message-content p {
+        text-indent: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .principal-card,
+    .notices-card {
+        padding: 20px;
+    }
+    
+    .letterhead h1 {
+        font-size: 18px;
+    }
+    
+    .notices-header h2 {
+        font-size: 18px;
+    }
+    
+    .message-content {
+        font-size: 15px;
+    }
+}

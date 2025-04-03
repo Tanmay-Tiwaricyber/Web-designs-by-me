@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCB Captains' Legacy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rcb-red: #EC1C24;
+            --rcb-gold: #FFD700;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #1a1a1a;
+            --text-light: #f0f0f0;
+            --text-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Captains Section */
+        .captains-section {
+            padding: 8rem 2rem;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--rcb-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
+            color: var(--text-white);
+            letter-spacing: 3px;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--rcb-red), var(--rcb-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        /* Captains Grid */
+        .captains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .captain-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(236, 28, 36, 0.1);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .captain-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .captain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(236, 28, 36, 0.3);
+            border-color: rgba(236, 28, 36, 0.3);
+        }
+
+        .captain-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            object-position: top;
+            border-bottom: 3px solid var(--rcb-red);
+            transition: all 0.5s ease;
+            filter: grayscale(20%);
+        }
+
+        .captain-card:hover .captain-image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .captain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, transparent 50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+
+        .captain-tenure {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--rcb-gold);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .captain-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text-white);
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .captain-role {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .captain-content {
+            padding: 2rem;
+        }
+
+        .captain-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--rcb-red);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .captain-highlights {
+            margin-top: 1.5rem;
+        }
+
+        .highlight-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--rcb-gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .highlight-title i {
+            font-size: 1.2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight-icon {
+            color: var(--rcb-red);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .highlight-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .view-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            color: var(--rcb-red);
+            text-decoration: none;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .view-button:hover {
+            color: var(--rcb-gold);
+        }
+
+        .view-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Decorative Elements */
+        .section-decoration {
+            position: absolute;
+            opacity: 0.03;
+            z-index: 0;
+            font-size: 20rem;
+            color: var(--rcb-red);
+        }
+
+        .decoration-1 {
+            top: -50px;
+            left: -100px;
+        }
+
+        .decoration-2 {
+            bottom: -100px;
+            right: -100px;
+            color: var(--rcb-gold);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 3.5rem;
+            }
+
+            .captains-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .captain-image {
+                height: 300px;
+            }
+
+            .captain-overlay {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .captains-section {
+                padding: 5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
+            .captain-name {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .captains-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-decoration {
+                font-size: 15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Captains' Legacy Section -->
+    <section class="captains-section" id="captains">
+        <!-- Decorative Elements -->
+        <div class="section-decoration decoration-1">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="section-decoration decoration-2">
+            <i class="fas fa-trophy"></i>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <p class="section-subtitle">Leadership Through The Years</p>
+            <h2 class="section-title">Captains' <span>Legacy</span></h2>
+            <p class="section-description">
+                From the foundation laid by Rahul Dravid to the modern era under Faf du Plessis, meet the leaders who shaped RCB's destiny.
+            </p>
+        </div>
+
+        <!-- Captains Grid -->
+        <div class="captains-grid">
+            <!-- Rahul Dravid -->
+            <div class="captain-card">
+                <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Rahul Dravid" class="captain-image">
+                <div class="captain-overlay">
+                    <span class="captain-tenure">2008</span>
+                    <h3 class="captain-name">Rahul Dravid</h3>
+                    <span class="captain-role">The Wall • Founding Captain</span>
+                </div>
+                <div class="captain-content">
+                    <div class="captain-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">14</div>
+                            <div class="stat-label">Matches</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">35.7%</div>
+                            <div class="stat-label">Win %</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">375</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">124.5</div>
+                            <div class="stat-label">SR</div>
+                        </div>
+                    </div>
+                    <div class="captain-highlights">
+                        <h4 class="highlight-title"><i class="fas fa-star"></i> Iconic Moments</h4>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Led RCB in inaugural IPL season</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Scored 75* vs MI in first season</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Built foundation for RCB culture</p>
+                        </div>
+                    </div>
+                    <a href="#" class="view-button">
+                        View Profile <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Anil Kumble -->
+            <div class="captain-card">
+                <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Anil Kumble" class="captain-image">
+                <div class="captain-overlay">
+                    <span class="captain-tenure">2009-2010</span>
+                    <h3 class="captain-name">Anil Kumble</h3>
+                    <span class="captain-role">Jumbo • Legendary Spinner</span>
+                </div>
+                <div class="captain-content">
+                    <div class="captain-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">26</div>
+                            <div class="stat-label">Matches</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">61.5%</div>
+                            <div class="stat-label">Win %</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">21</div>
+                            <div class="stat-label">Wickets</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">5/5</div>
+                            <div class="stat-label">Best</div>
+                        </div>
+                    </div>
+                    <div class="captain-highlights">
+                        <h4 class="highlight-title"><i class="fas fa-star"></i> Iconic Moments</h4>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Took RCB to 2009 IPL Final</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">5/5 vs RR - IPL's first 5-wicket haul</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Mentored young Virat Kohli</p>
+                        </div>
+                    </div>
+                    <a href="#" class="view-button">
+                        View Profile <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Daniel Vettori -->
+            <div class="captain-card">
+                <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Daniel Vettori" class="captain-image">
+                <div class="captain-overlay">
+                    <span class="captain-tenure">2011-2012</span>
+                    <h3 class="captain-name">Daniel Vettori</h3>
+                    <span class="captain-role">The Kiwi • Tactical Genius</span>
+                </div>
+                <div class="captain-content">
+                    <div class="captain-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">32</div>
+                            <div class="stat-label">Matches</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">56.2%</div>
+                            <div class="stat-label">Win %</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">17</div>
+                            <div class="stat-label">Wickets</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">3.5</div>
+                            <div class="stat-label">Econ</div>
+                        </div>
+                    </div>
+                    <div class="captain-highlights">
+                        <h4 class="highlight-title"><i class="fas fa-star"></i> Iconic Moments</h4>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Discovered Chris Gayle as RCB's star</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">2011 IPL Runner-up season</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Mentored Kohli's captaincy</p>
+                        </div>
+                    </div>
+                    <a href="#" class="view-button">
+                        View Profile <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Virat Kohli -->
+            <div class="captain-card">
+                <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Virat Kohli" class="captain-image">
+                <div class="captain-overlay">
+                    <span class="captain-tenure">2013-2021</span>
+                    <h3 class="captain-name">Virat Kohli</h3>
+                    <span class="captain-role">King Kohli • RCB Legend</span>
+                </div>
+                <div class="captain-content">
+                    <div class="captain-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">140</div>
+                            <div class="stat-label">Matches</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">49.2%</div>
+                            <div class="stat-label">Win %</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">7,263</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">130.4</div>
+                            <div class="stat-label">SR</div>
+                        </div>
+                    </div>
+                    <div class="captain-highlights">
+                        <h4 class="highlight-title"><i class="fas fa-star"></i> Iconic Moments</h4>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">973 runs in 2016 season (record)</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">4 centuries in 2016 IPL</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Became face of RCB franchise</p>
+                        </div>
+                    </div>
+                    <a href="#" class="view-button">
+                        View Profile <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Faf du Plessis -->
+            <div class="captain-card">
+                <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Faf du Plessis" class="captain-image">
+                <div class="captain-overlay">
+                    <span class="captain-tenure">2022-Present</span>
+                    <h3 class="captain-name">Faf du Plessis</h3>
+                    <span class="captain-role">The Protea • Modern Leader</span>
+                </div>
+                <div class="captain-content">
+                    <div class="captain-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">30</div>
+                            <div class="stat-label">Matches</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">53.3%</div>
+                            <div class="stat-label">Win %</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">1,208</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">145.8</div>
+                            <div class="stat-label">SR</div>
+                        </div>
+                    </div>
+                    <div class="captain-highlights">
+                        <h4 class="highlight-title"><i class="fas fa-star"></i> Iconic Moments</h4>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Took over after Kohli era</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">2023: 730 runs in season</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Building balanced RCB squad</p>
+                        </div>
+                    </div>
+                    <a href="#" class="view-button">
+                        View Profile <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Smriti Mandhana -->
+            <div class="captain-card">
+                <img src="https://i.ibb.co/0jQ7ZJt/rcb-logo.png" alt="Smriti Mandhana" class="captain-image">
+                <div class="captain-overlay">
+                    <span class="captain-tenure">2023-Present</span>
+                    <h3 class="captain-name">Smriti Mandhana</h3>
+                    <span class="captain-role">Women's Team • Trailblazer</span>
+                </div>
+                <div class="captain-content">
+                    <div class="captain-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Matches</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">37.5%</div>
+                            <div class="stat-label">Win %</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">149</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">111.1</div>
+                            <div class="stat-label">SR</div>
+                        </div>
+                    </div>
+                    <div class="captain-highlights">
+                        <h4 class="highlight-title"><i class="fas fa-star"></i> Iconic Moments</h4>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">First RCB Women's captain</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Most expensive WPL signing</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-circle highlight-icon"></i>
+                            <p class="highlight-text">Building women's cricket legacy</p>
+                        </div>
+                    </div>
+                    <a href="#" class="view-button">
+                        View Profile <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animate captain cards when they come into view
+        const captainCards = document.querySelectorAll('.captain-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        captainCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add hover sound effect to cards
+        captainCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Would play a subtle sound effect in production
+                console.log('Hover sound effect would play here');
+            });
+        });
+    </script>
+</body>
+</html>

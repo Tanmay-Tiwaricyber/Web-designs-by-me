@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --gold-accent: #d4af37;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            color: var(--gold-accent);
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold-accent);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            position: relative;
+            padding: 30px;
+        }
+
+        .about-text::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 50%);
+            border-radius: var(--border-radius);
+            z-index: 0;
+        }
+
+        .about-text-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: var(--gold-accent);
+            font-weight: bold;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            height: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+            z-index: 1;
+        }
+
+        .milestones {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .milestone-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .milestone-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1);
+        }
+
+        .milestone-icon {
+            font-size: 40px;
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+        }
+
+        .milestone-year {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .milestone-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .milestone-desc {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .recognition-badge {
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px dashed var(--gold-accent);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .recognition-badge h3 {
+            color: var(--gold-accent);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .recognition-badge p {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .milestones {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-image {
+                height: 400px;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 30px;
+            }
+            
+            .milestones {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-text {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-header h2 {
+                font-size: 26px;
+            }
+            
+            .about-container {
+                padding: 40px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="about-container">
+        <div class="section-header">
+            <h2>About Our School</h2>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <div class="about-text-content">
+                    <p>With the commitment to provide <span class="highlight">quality education</span> based on holistic cultural and contemporary values and ethics, I. C. Dr. Lianne Chandra Gupta and his brothers had the vision to establish the school in the real memory of their Office Law for 3rd November.</p>
+                    
+                    <p><span class="highlight">Gupta</span>, the sole inspiration behind the school, envisioned an institution that would blend traditional values with modern education. The year 1994 marked the beginning of this journey in the social board area of research.</p>
+                    
+                    <p>The year <span class="highlight">1996</span> was a landmark in the history of the school that lives on today. This was when the foundation name of the school was established. After two years, the program offered the most successful school building materials, setting new standards in education.</p>
+                    
+                    <p>The topics and questions of each system have been best received, establishing itself as a premier institution in the city.</p>
+                </div>
+            </div>
+            
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Our School Campus">
+            </div>
+        </div>
+
+        <div class="milestones">
+            <div class="milestone-card">
+                <div class="milestone-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <div class="milestone-year">1994</div>
+                <div class="milestone-title">Foundation</div>
+                <div class="milestone-desc">The vision was conceived by Dr. Lianne Chandra Gupta and his brothers</div>
+            </div>
+            
+            <div class="milestone-card">
+                <div class="milestone-icon">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="milestone-year">1996</div>
+                <div class="milestone-title">Establishment</div>
+                <div class="milestone-desc">Official foundation of the school with its current name</div>
+            </div>
+            
+            <div class="milestone-card">
+                <div class="milestone-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="milestone-year">2019</div>
+                <div class="milestone-title">Recognition</div>
+                <div class="milestone-desc">Assessment by the Narrative Charitable Trust Team</div>
+            </div>
+        </div>
+
+        <div class="recognition-badge">
+            <h3>Recognition & Affiliation</h3>
+            <p>The school, from class 6 to 12, with science and commerce streams, is a premier educational institution. The school is affiliated to CBSE Board and recognized by the local education authority.</p>
+        </div>
+    </div>
+</body>
+</html>

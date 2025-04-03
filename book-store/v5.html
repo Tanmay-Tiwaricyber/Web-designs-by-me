@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Practice Book | Silent Programmer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #22d3ee;
+            --dark: #0f172a;
+            --darker: #020617;
+            --dark-light: #1e293b;
+            --text: #f8fafc;
+            --text-light: #ffffff;
+            --text-dark: #94a3b8;
+            --code-bg: #1e1e1e;
+            --border-radius: 16px;
+            --box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Premium Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            padding: 100px 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
+            z-index: 0;
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+            50% { transform: translate(-10%, 10%) scale(1.1); opacity: 0.2; }
+            100% { transform: translate(10%, -10%) scale(1); opacity: 0.1; }
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            perspective: 1200px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .book-container {
+            position: relative;
+            width: 450px;
+            height: 600px;
+            transform-style: preserve-3d;
+            transform: rotateY(-25deg);
+            transition: var(--transition);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .book-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a237e, #283593);
+            border-radius: 5px 15px 15px 5px;
+            box-shadow: var(--box-shadow);
+            transform: translateZ(20px);
+            backface-visibility: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .book-cover h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .book-cover p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .book-cover .author {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: auto;
+            position: relative;
+            padding-top: 1rem;
+        }
+
+        .book-cover .author::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(to right, #ffffff00, #1976d200);
+            transform: translateZ(-1px) rotateY(180deg);
+            transform-origin: left center;
+        }
+
+        .book-spine {
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(to bottom, #0d47a1, #1976d2);
+            transform: rotateY(90deg) translateX(-15px);
+            transform-origin: left center;
+            border-radius: 5px 0 0 5px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-pages {
+            position: absolute;
+            width: 98%;
+            height: 98%;
+            top: 1%;
+            left: 1%;
+            background: #f5f5f5;
+            border-radius: 2px 12px 12px 2px;
+            transform: translateZ(-5px);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-pages::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 98%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to right,
+                #f5f5f5 0px,
+                #f5f5f5 4px,
+                #e0e0e0 4px,
+                #e0e0e0 6px
+            );
+            transform: translateZ(5px);
+            border-radius: 2px 12px 12px 2px;
+        }
+
+        @keyframes float {
+            0% { transform: rotateY(-25deg) translateY(0); }
+            50% { transform: rotateY(-25deg) translateY(-20px); }
+            100% { transform: rotateY(-25deg) translateY(0); }
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: -1;
+            bottom: 10%;
+            right: 10%;
+            border-radius: var(--border-radius);
+            animation: pulse 8s infinite alternate-reverse;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(to right, var(--text-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .hero .author {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 3.5rem;
+            font-weight: 500;
+        }
+
+        .hero .author::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 3rem;
+            height: 3px;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        /* Premium Features Section */
+        .features {
+            padding: 8rem 0;
+            background-color: var(--dark-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--text-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .feature-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: var(--box-shadow);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.75rem;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .feature-card p {
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        /* Levels Section */
+        .levels {
+            padding: 8rem 0;
+            background: linear-gradient(to bottom, var(--dark-light), var(--dark));
+            position: relative;
+        }
+
+        .levels::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2322d3ee' fill-opacity='0.05' d='M49,-50.7C62.7,-38.5,72.1,-19.3,71.6,-0.6C71.1,18.1,60.7,36.2,47,52.3C33.2,68.4,16.6,82.5,-2.2,84.7C-21,86.9,-42,77.2,-56.9,61.1C-71.8,45,-80.6,22.5,-80.3,0.3C-80,-21.9,-70.6,-43.8,-55.7,-56C-40.8,-68.2,-20.4,-70.7,-0.7,-70C19,-69.3,38,-65.4,49,-50.7Z' transform='translate(100 100)'/%3E%3C/svg%3E");
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        .levels-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .level-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .level-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .level-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .level-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .level-iron .level-icon { background: #a19d94; color: #333; }
+        .level-bronze .level-icon { background: #cd7f32; color: #fff; }
+        .level-silver .level-icon { background: #c0c0c0; color: #333; }
+        .level-gold .level-icon { background: #ffd700; color: #333; }
+        .level-master .level-icon { background: #9370db; color: #fff; }
+        .level-grandmaster .level-icon { background: #ff4500; color: #fff; }
+        .level-ninja .level-icon { background: #000; color: #fff; }
+
+        .level-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-subtitle {
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .level-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .level-example {
+            background: var(--code-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Source Code Pro', monospace;
+            position: relative;
+        }
+
+        .level-example h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .level-example pre {
+            color: #f8f8f2;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .level-example .result {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        /* Problems Section */
+        .problems {
+            padding: 8rem 0;
+            background: linear-gradient(to bottom, var(--dark), var(--darker));
+            position: relative;
+        }
+
+        .problem-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .problem-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            background: rgba(30, 41, 59, 0.5);
+            color: var(--text-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .problem-tab.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            border-color: transparent;
+        }
+
+        .problem-container {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .problem-container.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .problem-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .problem-container p {
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .problem-container pre {
+            background: var(--code-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Source Code Pro', monospace;
+            color: #f8f8f2;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-container .result {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            border-left: 3px solid var(--accent);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 8rem 0;
+            background-color: var(--dark-light);
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .testimonial-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: var(--box-shadow);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -10px;
+            left: -15px;
+        }
+
+        .testimonial-text::after {
+            bottom: -20px;
+            right: -15px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 2px solid var(--accent);
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            z-index: 0;
+            animation: pulse 15s infinite alternate-reverse;
+        }
+
+        .cta-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .cta p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Premium Footer */
+        footer {
+            position: relative;
+            background: var(--darker);
+            padding: 6rem 0 2rem;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%231e293b'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-logo i {
+            font-size: 1.75rem;
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 1s forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                gap: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .level-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero .author {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                margin-top: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .author {
+                font-size: 1.25rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .problem-tabs {
+                flex-wrap: wrap;
+            }
+
+            .problem-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text animate">
+                    <h1>SQL Query Practice Book</h1>
+                    <div class="author">By Silent Programmer</div>
+                    <p class="animate delay-1">Master SQL through 300+ carefully crafted problems across 7 difficulty levels. Perfect for developers, analysts, and database administrators.</p>
+                    <div class="hero-buttons animate delay-2">
+                        <a href="#levels" class="btn btn-primary">
+                            <i class="fas fa-layer-group"></i> View Levels
+                        </a>
+                        <a href="#problems" class="btn btn-outline">
+                            <i class="fas fa-book-open"></i> Try Problems
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image animate delay-1">
+                    <div class="book-container">
+                        <div class="book-cover">
+                            <!-- <h2>SQL Query Practice</h2>
+                            <p>Basic to Advanced</p>
+                            <div class="author">Silent Programmer</div> -->
+                            <img src="1.jpg" alt="" height="662px" width="415px">
+                        </div>
+                        <div class="book-spine"></div>
+                        <div class="book-pages"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>Why This Book Stands Out</h2>
+                <p class="animate delay-1">Designed to help you think like a SQL expert with practical, hands-on problems</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Structured Learning</h3>
+                    <p>Progress from basic queries to advanced techniques with 7 distinct difficulty levels.</p>
+                </div>
+                <div class="feature-card animate delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Real-world Scenarios</h3>
+                    <p>Solve problems modeled after actual business cases you'll encounter in development.</p>
+                </div>
+                <div class="feature-card animate delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Multiple Solutions</h3>
+                    <p>Learn different approaches to solve the same problem, understanding the trade-offs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Levels Section -->
+    <section class="levels" id="levels">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>Problem Difficulty Levels</h2>
+                <p class="animate delay-1">Progress through increasingly challenging SQL problems</p>
+            </div>
+            
+            <div class="levels-container">
+                <!-- Iron Level -->
+                <div class="level-card level-iron animate delay-1">
+                    <div class="level-header">
+                        <div class="level-icon">I</div>
+                        <div>
+                            <h3 class="level-title">Iron Level</h3>
+                            <p class="level-subtitle">Basic Queries – Filtering & Selection</p>
+                        </div>
+                    </div>
+                    <!-- <div class="level-content">
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Show all students from "Delhi"</p>
+                            <pre>SELECT * FROM STUDENTS WHERE City = 'Delhi';</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 2 rows returned
+                            </div>
+                        </div>
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find the total number of students</p>
+                            <pre>SELECT COUNT(*) as Total_Students FROM STUDENTS;</pre>
+                            <div class="result">
+                                <strong>Result:</strong> Total_Students: 5
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- Bronze Level -->
+                <div class="level-card level-bronze animate delay-2">
+                    <div class="level-header">
+                        <div class="level-icon">B</div>
+                        <div>
+                            <h3 class="level-title">Bronze Level</h3>
+                            <p class="level-subtitle">Basic Aggregates & Sorting</p>
+                        </div>
+                    </div>
+                    <!-- <div class="level-content">
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find the total salary of all employees</p>
+                            <pre>SELECT SUM(Salary) as Total_Salary FROM EMPLOYEES;</pre>
+                            <div class="result">
+                                <strong>Result:</strong> Total_Salary: 307000
+                            </div>
+                        </div>
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Count employees in each department</p>
+                            <pre>SELECT Department, COUNT(*) as Emp_Count 
+FROM EMPLOYEES 
+GROUP BY Department;</pre>
+                            <div class="result">
+                                <strong>Result:</strong> HR: 2, IT: 2, Finance: 1
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- Silver Level -->
+                <div class="level-card level-silver animate delay-1">
+                    <div class="level-header">
+                        <div class="level-icon">S</div>
+                        <div>
+                            <h3 class="level-title">Silver Level</h3>
+                            <p class="level-subtitle">Advanced Aggregates & Subqueries</p>
+                        </div>
+                    </div>
+                    <!-- <div class="level-content">
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find the second highest price in orders</p>
+                            <pre>SELECT MAX(Price) as Second_Highest_Price
+FROM ORDERS
+WHERE Price < (SELECT MAX(Price) FROM ORDERS);</pre>
+                            <div class="result">
+                                <strong>Result:</strong> Second_Highest_Price: 50000
+                            </div>
+                        </div>
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find total revenue (Price × Quantity)</p>
+                            <pre>SELECT SUM(Price * Quantity) as Total_Revenue FROM ORDERS;</pre>
+                            <div class="result">
+                                <strong>Result:</strong> Total_Revenue: 187000
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- Gold Level -->
+                <div class="level-card level-gold animate delay-2">
+                    <div class="level-header">
+                        <div class="level-icon">G</div>
+                        <div>
+                            <h3 class="level-title">Gold Level</h3>
+                            <p class="level-subtitle">Subqueries & Conditional Aggregation</p>
+                        </div>
+                    </div>
+                    <!-- <div class="level-content">
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find employees earning more than average salary</p>
+                            <pre>SELECT * FROM EMPLOYEES
+WHERE Salary > (SELECT AVG(Salary) FROM EMPLOYEES);</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 2 rows returned
+                            </div>
+                        </div>
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Show top 3 highest salaries</p>
+                            <pre>SELECT * FROM EMPLOYEES
+ORDER BY Salary DESC
+LIMIT 3;</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 3 rows returned
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- Master Level -->
+                <div class="level-card level-master animate delay-1">
+                    <div class="level-header">
+                        <div class="level-icon">M</div>
+                        <div>
+                            <h3 class="level-title">Master Level</h3>
+                            <p class="level-subtitle">Nested Subqueries & Rank Functions</p>
+                        </div>
+                    </div>
+                    <!-- <div class="level-content">
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find employees with same salary</p>
+                            <pre>SELECT e1.*
+FROM EMPLOYEES e1
+JOIN (SELECT Salary FROM EMPLOYEES 
+      GROUP BY Salary HAVING COUNT(*) > 1) e2
+ON e1.Salary = e2.Salary;</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 2 rows returned
+                            </div>
+                        </div>
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find Nth highest salary (N=2)</p>
+                            <pre>SELECT * FROM EMPLOYEES
+WHERE Salary = (
+    SELECT DISTINCT Salary
+    FROM EMPLOYEES
+    ORDER BY Salary DESC
+    LIMIT 1 OFFSET 1
+);</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 1 row returned
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- Grand Master Level -->
+                <div class="level-card level-grandmaster animate delay-2">
+                    <div class="level-header">
+                        <div class="level-icon">GM</div>
+                        <div>
+                            <h3 class="level-title">Grand Master Level</h3>
+                            <p class="level-subtitle">Advanced SQL Techniques</p>
+                        </div>
+                    </div>
+                    <!-- <div class="level-content">
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find department with >40% of total amount</p>
+                            <pre>SELECT Department, SUM(Amount) as Dept_Total  
+FROM TRANSACTIONS  
+GROUP BY Department  
+HAVING Dept_Total > (SELECT SUM(Amount) * 0.4 
+                     FROM TRANSACTIONS);</pre>
+                            <div class="result">
+                                <strong>Result:</strong> Electronics: 105000
+                            </div>
+                        </div>
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Find total revenue per month</p>
+                            <pre>SELECT DATE_FORMAT(OrderDate, '%Y-%m') as Month, 
+       SUM(Price * Quantity) as Monthly_Revenue 
+FROM ORDERS 
+GROUP BY DATE_FORMAT(OrderDate, '%Y-%m');</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 3 months with revenue
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <!-- Ninja Dominator Level -->
+                <div class="level-card level-ninja animate delay-1">
+                    <div class="level-header">
+                        <div class="level-icon">ND</div>
+                        <div>
+                            <h3 class="level-title">Ninja Dominator Level</h3>
+                            <p class="level-subtitle">Elite-Level Challenges</p>
+                        </div>
+                    </div>
+                    <!-- <div class="level-content">
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Top 3 highest prices using RANK()</p>
+                            <pre>WITH RankedSales AS (
+    SELECT Product, Price,
+    RANK() OVER (ORDER BY Price DESC) AS Price_Rank
+    FROM SALES
+)
+SELECT * FROM RankedSales
+WHERE Price_Rank <= 3;</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 3 rows returned
+                            </div>
+                        </div>
+                        <div class="level-example">
+                            <h4>Problem:</h4>
+                            <p>Customers who purchased in all categories</p>
+                            <pre>SELECT CustomerID, COUNT(DISTINCT Category) as CategoryCount 
+FROM SALES  
+GROUP BY CustomerID  
+HAVING CategoryCount = (SELECT COUNT(DISTINCT Category) FROM SALES);</pre>
+                            <div class="result">
+                                <strong>Result:</strong> 0 rows (no customer bought all)
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <!-- <section class="problems" id="problems">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>Try Sample Problems</h2>
+                <p class="animate delay-1">Test your SQL skills with these challenges</p>
+            </div>
+            
+            <div class="problem-tabs animate delay-1">
+                <div class="problem-tab active">Iron</div>
+                <div class="problem-tab">Bronze</div>
+                <div class="problem-tab">Silver</div>
+                <div class="problem-tab">Gold</div>
+                <div class="problem-tab">Master</div>
+            </div>
+
+            <div class="problem-container animate delay-2">
+                <h3>Basic Filtering with WHERE Clause</h3>
+                <p>Given the STUDENTS table, show all students from "Delhi".</p>
+                <pre><code>SELECT * FROM STUDENTS WHERE City = 'Delhi';</code></pre>
+                <div class="result">
+                    <strong>Result:</strong><br>
+                    <code><br>
+                        +-----------+-------+-----+-------+-------+-------+
+                        | StudentID | Name  | Age | Grade | City  | Marks |
+                        +-----------+-------+-----+-------+-------+-------+
+                        |         1 | Amit  |  17 | A     | Delhi |    85 |
+                        |         3 | Raj   |  17 | A     | Delhi |    90 |
+                        +-----------+-------+-----+-------+-------+-------+
+                    </code>
+                    
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>What Readers Say</h2>
+                <p class="animate delay-1">Hear from developers who improved their SQL skills</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate delay-1">
+                    <div class="testimonial-text">
+                        This book transformed how I approach SQL problems. The gradual difficulty progression helped me build confidence and master complex queries I never thought I could write.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        <div class="author-info">
+                            <h4>Raj Patel</h4>
+                            <p>Data Analyst at TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate delay-2">
+                    <div class="testimonial-text">
+                        As a bootcamp instructor, I recommend this book to all my students. The real-world scenarios and multiple solution approaches make it an invaluable learning resource.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Lead Instructor at CodeAcademy</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate delay-3">
+                    <div class="testimonial-text">
+                        The Ninja Dominator level challenges pushed me beyond my limits. After completing them, SQL interview questions that once seemed impossible became manageable.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User">
+                        <div class="author-info">
+                            <h4>Arjun Kumar</h4>
+                            <p>Senior Developer at DataSystems</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content animate">
+                <h2>Ready to Master SQL?</h2>
+                <p class="animate delay-1">Get the complete SQL Query Practice Book with 300+ problems across 7 difficulty levels</p>
+                <div class="animate delay-2">
+                    <a href="#" class="btn btn-primary" style="background: white; color: var(--primary-dark);">
+                        <i class="fas fa-shopping-cart"></i> Buy Now
+                    </a>
+                    <a href="#" class="btn btn-outline" style="border-color: white; color: white;">
+                        <i class="fas fa-download"></i> Download Sample
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-database"></i>
+                    <span>Silent Programmer</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Silent Programmer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .level-card, .problem-container, .testimonial-card');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add('animate');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Problem tabs functionality
+        const tabs = document.querySelectorAll('.problem-tab');
+        const problemContainer = document.querySelector('.problem-container');
+        
+        // Sample problems data
+        const problems = {
+            iron: {
+                title: "Basic Filtering with WHERE Clause",
+                description: "Given the STUDENTS table, show all students from 'Delhi'.",
+                query: "SELECT * FROM STUDENTS WHERE City = 'Delhi';",
+                result: `
+                +-----------+-------+-----+-------+-------+-------+
+                | StudentID | Name  | Age | Grade | City  | Marks |
+                +-----------+-------+-----+-------+-------+-------+
+                |         1 | Amit  |  17 | A     | Delhi |    85 |
+                |         3 | Raj   |  17 | A     | Delhi |    90 |
+                +-----------+-------+-----+-------+-------+-------+`
+                
+            },
+            bronze: {
+                title: "Basic Aggregates & Sorting",
+                description: "Find the total salary of all employees.",
+                query: "SELECT SUM(Salary) as Total_Salary FROM EMPLOYEES;",
+                result: `+--------------+
+| Total_Salary |
++--------------+
+|       307000 |
++--------------+`
+            },
+            silver: {
+                title: "Advanced Aggregates & Subqueries",
+                description: "Find the second highest price in orders.",
+                query: `SELECT MAX(Price) as Second_Highest_Price
+FROM ORDERS
+WHERE Price < (SELECT MAX(Price) FROM ORDERS);`,
+                result: `+----------------------+
+| Second_Highest_Price |
++----------------------+
+|                50000 |
++----------------------+`
+            },
+            gold: {
+                title: "Subqueries & Conditional Aggregation",
+                description: "Find employees earning more than the average salary.",
+                query: `SELECT * FROM EMPLOYEES
+WHERE Salary > (SELECT AVG(Salary) FROM EMPLOYEES);`,
+                result: `+-------+--------+------------+--------+-----------+
+| EmpID | Name   | Department | Salary | JoinYear  |
++-------+--------+------------+--------+-----------+
+|     2 | Neha   | IT         |  70000 |      2019 |
+|     4 | Simran | IT         |  75000 |      2017 |
++-------+--------+------------+--------+-----------+`
+            },
+            master: {
+                title: "Nested Subqueries & Rank Functions",
+                description: "Find employees who have the same salary.",
+                query: `SELECT e1.*
+FROM EMPLOYEES e1
+JOIN (SELECT Salary FROM EMPLOYEES GROUP BY Salary HAVING COUNT(*) > 1) e2
+ON e1.Salary = e2.Salary;`,
+                result: `+-------+-------+------------+--------+-----------+
+| EmpID | Name  | Department | Salary | JoinYear  |
++-------+-------+------------+--------+-----------+
+|     3 | Raj   | Finance    |  60000 |      2020 |
+|     6 | Priya | Finance    |  60000 |      2021 |
++-------+-------+------------+--------+-----------+`
+            }
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Get the level from the tab text
+                const level = tab.textContent.toLowerCase();
+                
+                // Update the problem container with the selected level's problem
+                if (problems[level]) {
+                    const problem = problems[level];
+                    problemContainer.innerHTML = `
+                        <h3>${problem.title}</h3>
+                        <p>${problem.description}</p>
+                        <pre><code>${problem.query}</code></pre>
+                        <div class="result">
+                            <strong>Result:</strong><br>
+                            ${problem.result}
+                        </div>
+                    `;
+                    
+                    // Re-animate the container
+                    problemContainer.classList.remove('animate');
+                    setTimeout(() => {
+                        problemContainer.classList.add('animate');
+                    }, 10);
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
